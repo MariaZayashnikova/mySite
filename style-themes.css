@@ -492,6 +492,7 @@ p.contacts-name {
   box-shadow: inset 0 5px 10px -5px rgb(53, 51, 51);
   color: black;
 }
+
 .page-main-dictionary .container-dictionary {
   background: url('img/book.png') no-repeat;
   background-size: contain;
@@ -515,14 +516,13 @@ p.contacts-name {
 .container-dictionary  .word-rus {
   text-align: end;
   padding-top: 20%;
-
 }
 
-.container-dictionary  .word-en {
+.container-dictionary .word-en {
   padding-top: 20%;
 }
 
-.container-dictionary  .dash {
+.container-dictionary .dash {
   padding-top: 25%;
   font-weight: bold;
   text-align: center;
@@ -540,7 +540,6 @@ p.contacts-name {
 .pages-dictionary-left .navigation-back{
   grid-column-start: 1;
   grid-row-start: 8;
-  transform: rotate(180deg);
   width: 35px;
   height: 35px;
 }
