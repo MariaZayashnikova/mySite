@@ -16,7 +16,6 @@
   font-size: 14px;
   line-height: 18px;
   color: #d3d0d0;
-  /* background-color: rgba(32, 29, 29, 0.973); */
   background-color: #27262b;
   position: relative;
 }
@@ -34,7 +33,6 @@
 .page-header {
   display: flex;
   align-items: center;
-  /* background-color: #27262b; */
   background-image: url("img/spacewhiteOpacity8.png");
 }
 
@@ -113,6 +111,12 @@
 .navigation a {
   color: #d3d0d0;
   text-decoration: none;
+}
+
+.header-navigation .active-navigation {
+  padding: 3px;
+  font-size: 18px;
+  border-bottom: 1px ridge white;
 }
 
 .contacts {
@@ -293,7 +297,11 @@ p.contacts-name {
 .theme-button-light:focus,
 .theme-button-light:hover {
   color: #000000;
-  background-color: #b4f0e3f8;
+  background-color: #e5aef3f8;
+}
+
+.header-navigation .navigation-light {
+  color: black;
 }
 
 
