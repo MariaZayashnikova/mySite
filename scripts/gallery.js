@@ -1,8 +1,10 @@
+function workGallery () {
 'use strict';
 
 let gallery = document.querySelector('.gallery');
 let images = document.querySelectorAll('.flex .image');
 let templateModal = document.querySelector('#modal').content;
+
 
 let commentsAll;
 
@@ -124,4 +126,5 @@ images.forEach(image => {
         }).then(() => openModal(idImage, srcImage, altImage, commentsAll));
     });
 });
-
+}
+export default workGallery;

@@ -494,6 +494,7 @@ p.contacts-name {
 
 .page-main-dictionary {
   display: flex;
+  justify-content: space-around;
   background-color: rgba(32, 29, 29, 0.973);
   width: 100%;
   min-height: 750px;
@@ -571,33 +572,91 @@ p.contacts-name {
   font-weight: bold;
 }
 
+.page-main-dictionary .functions-dictionary {
+  width: 30%;
+  height: 350px;
+  background-color: #2D2F36;
+  border-radius: 15px;
+  padding: 1px;
+  margin-top: 50px;
+  display: flex;
+}
+
 .page-main-dictionary .new-words {
-  width: 20%;
-  height: 60%;
-  background-color: rgba(115, 116, 117, 0.979);
-  margin: 50px;
+  width: 60%;
+  position: relative;
+  background-color: transparent;
   border-radius: 30px;
+  margin: 10px auto;
+  padding: 5px;
 }
-.new-words .title-new-words {
-  margin: 15px;
-  color: rgb(161, 156, 156);
-}
+
 .new-words .form-new-words {
   width: 100%;
   padding: 10px;
+  position: absolute;
+
+}
+
+.form-new-words label {
+  display: block;
+  font-size: 16px;
+  height: 16px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color:  #c2c2c5;
 }
 .form-new-words .input-rus-word, .input-en-word{
-  width: 40%;
-  height: 35px;
-  margin: 10px;
-  border-radius: 10px;
-  border: 1px solid rgb(153, 152, 152);
+  background: transparent;
+  border: 0;
+  color: #f2f2f2;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
 }
+
 .form-new-words .add-word {
   display: block;
   width: 40%;
-  height: 35px;
-  margin: 10px auto;
-  border-radius: 5px;
-  border: 1px solid rgb(153, 152, 152);
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
+  color: #707075;
+  margin-top: 40px;
+  transition: color 300ms;
+}
+
+path {
+  fill: none;
+  stroke: url(#linearGradient);;
+  stroke-width: 4;
+  stroke-dasharray: 240 1386;
+}
+
+svg {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.add-word:focus {
+  color: #f2f2f2;
+}
+
+.functions-dictionary .variation {
+  width: 40%;
+  margin: 5px;
+}
+
+.functions-dictionary .mode {
+  display: block;
+  width: 70%;
+  height: 50px;
+  margin: 40px auto;
+  padding: 1px;
 }

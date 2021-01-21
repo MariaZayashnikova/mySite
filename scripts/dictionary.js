@@ -1,3 +1,5 @@
+import anime from 'animejs/lib/anime.es.js';
+function workDictionary () {
 'use strict';
 
 let btnBack = document.querySelector('.navigation-back'),
@@ -155,3 +157,58 @@ getDataDictionary().then(data => {
 }).then(() =>{
     fillPage(wordsAll[0]);
 });
+
+let current = null;
+document.querySelector('#rus').addEventListener('focus', function(e) {
+  if (current) {
+      current.pause();
+    }
+  current = anime({
+    targets: 'path',
+    strokeDashoffset: {
+      value: 0,
+      duration: 700,
+      easing: 'easeOutQuart'
+    },
+    strokeDasharray: {
+      value: '240 1386',
+      duration: 700,
+      easing: 'easeOutQuart'
+    }
+  });
+});
+document.querySelector('#en').addEventListener('focus', function(e) {
+  if (current) {current.pause();} 
+  current = anime({
+    targets: 'path',
+    strokeDashoffset: {
+      value: -336,
+      duration: 700,
+      easing: 'easeOutQuart'
+    },
+    strokeDasharray: {
+      value: '240 1386',
+      duration: 700,
+      easing: 'easeOutQuart'
+    }
+  });
+});
+document.querySelector('.add-word').addEventListener('focus', function(e) {
+  if (current) {current.pause();}
+  current = anime({
+    targets: 'path',
+    strokeDashoffset: {
+      value: -730,
+      duration: 700,
+      easing: 'easeOutQuart'
+    },
+    strokeDasharray: {
+      value: '530 1386',
+      duration: 700,
+      easing: 'easeOutQuart'
+    }
+  });
+});
+
+}
+export default workDictionary;
