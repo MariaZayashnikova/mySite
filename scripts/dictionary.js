@@ -102,6 +102,27 @@ let postData = async (data) => {
     return await res.json();
 };
 
+function showMessage (parent, result) {
+    let text = {
+        good: "Успешно добавлено!",
+        err: "Введите русское и английское слова"
+    };
+
+    let message = document.createElement('div');
+    message.classList.add('message');
+    if(result) {
+        message.textContent = text.good;
+        parent.append(message);
+    } else {
+        message.textContent = text.err;
+        parent.after(message);
+    }
+    
+    let timerId = setTimeout(() => {
+        message.remove();
+    }, 3000);
+}
+
 btnNext.addEventListener('click', () => {
     if(currentNumPage === wordsAll.length){
         return;
@@ -125,29 +146,27 @@ btnBack.addEventListener('click', () => {
 formAddWord.addEventListener('submit', event => {
     event.preventDefault();
 
-    let formData = new FormData(formAddWord);
-    let json = JSON.stringify(Object.fromEntries(formData.entries()));
-
-    postData(json).then(() => {
-        let message = document.createElement('div');
-        message.textContent = "Успешно добавлено!";
-        formAddWord.append(message);
-
-        let timerId = setTimeout(() => {
-            message.remove();
-        }, 3000);
-        getDataDictionary().then(data => {
-            wordsAll = [];
-            calculateWordsPage(data);
-        }).then(() => {
-            clearPage();
-            let index = currentNumPage;
-            fillPage(wordsAll[index - 1]);
-        });
-    });
-
-    formAddWord.reset();
+    if(!formAddWord.querySelector('#rus').value || !formAddWord.querySelector('#en').value) {
+        showMessage(formAddWord.querySelector('#en'));
+    } else {
+        let formData = new FormData(formAddWord);
+        let json = JSON.stringify(Object.fromEntries(formData.entries()));
     
+        postData(json).then(() => {
+            showMessage(formAddWord, 'good');
+    
+            getDataDictionary().then(data => {
+                wordsAll = [];
+                calculateWordsPage(data);
+            }).then(() => {
+                clearPage();
+                let index = currentNumPage;
+                fillPage(wordsAll[index - 1]);
+            });
+        });
+    
+        formAddWord.reset();
+    }
 });
 
 getDataDictionary().then(data => {

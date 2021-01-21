@@ -660,3 +660,9 @@ svg {
   margin: 40px auto;
   padding: 1px;
 }
+
+.message {
+  padding: 5px;
+  color: white;
+  margin-top: 5px;
+}
