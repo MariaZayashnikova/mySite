@@ -1,0 +1,231 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "image": "wolk",
+      "author": "Alex",
+      "commentText": "Прекрасная работа!",
+      "dateComment": "13-12-2020"
+    },
+    {
+      "author": "Mari",
+      "commentText": "Wow!",
+      "image": "wolk",
+      "dateComment": "16-12-2020",
+      "id": 2
+    },
+    {
+      "author": "maksim",
+      "commentText": "good",
+      "image": "wolk",
+      "dateComment": "16-12-2020",
+      "id": 3
+    },
+    {
+      "author": "Sofia",
+      "commentText": "NIce!",
+      "image": "devaColors",
+      "dateComment": "16-12-2020",
+      "id": 4
+    },
+    {
+      "author": "Alex",
+      "commentText": "very beautiful",
+      "image": "panda",
+      "dateComment": "16-12-2020",
+      "id": 5
+    },
+    {
+      "author": "Ann",
+      "commentText": "Interesting!",
+      "image": "anubis",
+      "dateComment": "17-12-2020",
+      "id": 6
+    },
+    {
+      "author": "Alexander",
+      "commentText": "О, прикольно",
+      "image": "wolk",
+      "dateComment": "25-12-2020",
+      "id": 7
+    }
+  ],
+
+  "words": [
+    {
+      "rus": "Дом",
+      "en": "Home",
+      "id": 8
+    },
+    {
+      "rus": "Кот",
+      "en": "Cat",
+      "id": 9
+    },
+    {
+      "rus": "Собака",
+      "en": "Dog",
+      "id": 10
+    },
+    {
+      "rus": "Птица",
+      "en": "Bird",
+      "id": 11
+    },
+    {
+      "rus": "Лошадь",
+      "en": "Horse",
+      "id": 12
+    },
+    {
+      "rus": "Свинья",
+      "en": "Pig",
+      "id": 13
+    },
+    {
+      "rus": "Мышь",
+      "en": "Mouse",
+      "id": 14
+    },
+    {
+      "rus": "Животное",
+      "en": "Animal",
+      "id": 15
+    },
+    {
+      "rus": "Корова",
+      "en": "Cow",
+      "id": 16
+    },
+    {
+      "rus": "Мочь, уметь",
+      "en": "Can",
+      "id": 17
+    },
+    {
+      "rus": "Песня",
+      "en": "Song",
+      "id": 18
+    },
+    {
+      "rus": "Фильм",
+      "en": "Movie",
+      "id": 19
+    },
+    {
+      "rus": "Девочка",
+      "en": "Girl",
+      "id": 20
+    },
+    {
+      "rus": "Женщина",
+      "en": "Woman",
+      "id": 21
+    },
+    {
+      "rus": "Масло",
+      "en": "Butter",
+      "id": 22
+    },
+    {
+      "rus": "Утро",
+      "en": "Morning",
+      "id": 23
+    },
+    {
+      "rus": "Вечер",
+      "en": "Evening",
+      "id": 24
+    },
+    {
+      "rus": "День",
+      "en": "Day",
+      "id": 25
+    },
+    {
+      "rus": "Время",
+      "en": "Time",
+      "id": 26
+    },
+    {
+      "rus": "Вода",
+      "en": "Water",
+      "id": 27
+    },
+    {
+      "rus": "Рис",
+      "en": "Rice",
+      "id": 28
+    },
+    {
+      "rus": "Мясо",
+      "en": "Meat",
+      "id": 29
+    },
+    {
+      "rus": "Банан",
+      "en": "Banana",
+      "id": 30
+    },
+    {
+      "rus": "Томат",
+      "en": "Tomato",
+      "id": 31
+    },
+    {
+      "rus": "Игра",
+      "en": "Game",
+      "id": 32
+    },
+    {
+      "rus": "Апельсин",
+      "en": "Orange",
+      "id": 33
+    },
+    {
+      "rus": "Сайт",
+      "en": "Site",
+      "id": 34
+    },
+    {
+      "rus": "Фрукт",
+      "en": "Fruit",
+      "id": 35
+    },
+    {
+      "rus": "Жена",
+      "en": "Wife",
+      "id": 36
+    },
+    {
+      "rus": "Выстрел",
+      "en": "Shot",
+      "id": 37
+    },
+    {
+      "rus": "Один",
+      "en": "One",
+      "id": 38
+    },
+    {
+      "rus": "Два",
+      "en": "Two",
+      "id": 39
+    },
+    {
+      "rus": "",
+      "en": "",
+      "id": 40
+    },
+    {
+      "rus": "Вечеринка",
+      "en": "Party",
+      "id": 41
+    },
+    {
+      "rus": "Весёлый",
+      "en": "Fun",
+      "id": 42
+    }
+  ]
+}
