@@ -8,7 +8,6 @@ function test () {
           userWord = document.querySelector('.user-word'),
           btnCheck = document.querySelector('.check');
 
-    let originalWordsArr = wordsAll.flat();
     let newWordsArr = [];
 
     containerStart.classList.add('hidden');
@@ -21,18 +20,18 @@ function test () {
     function createWordsCollection (originalArr) {
         for (let i = 0; i < 10; i++){
             let num = getRandomNum(0, originalArr.length);
-            let a = originalWordsArr[num];
-            if(newWordsArr.some(x => x.id === a.id)){
+            let element = wordsAll[num];
+            if(newWordsArr.some(word => word.id === element.id)){
                 i--;
             } else {
-                newWordsArr.push(a);
+                newWordsArr.push(element);
             }
         }
     }
     
     function startTest () {
         let i = 0;
-        createWordsCollection(originalWordsArr);
+        createWordsCollection(wordsAll);
 
         function showWord () {
             if (i % 2) {
