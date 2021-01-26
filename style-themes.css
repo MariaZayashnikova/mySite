@@ -651,18 +651,266 @@ svg {
 .functions-dictionary .variation {
   width: 40%;
   margin: 5px;
+  height: 100px;
+
+  --border-width: 5px;
+  --animation-speed: 0.5s;
+  --color: #ffffff;
+  color: var(--color);
+  position: relative;
+  border: var(--border-width) solid transparent;
 }
 
 .functions-dictionary .mode {
-  display: block;
-  width: 70%;
+  width: auto;
   height: 50px;
   margin: 40px auto;
-  padding: 1px;
+  background: transparent;
+  font-size: 26px;
+  color: rgb(150, 143, 143);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1;
+  border: solid var(--border-width) transparent;
 }
 
+.variation:before,
+.variation:after {
+  content: '';
+  position: absolute;
+  background: var(--color);
+}
+  
+  .variation:focus:before,
+  .variation:hover:before {
+    animation: beforeBorders var(--animation-speed) forwards ease-in-out;
+}
+
+  .variation:focus:after,
+  .variation:hover:after {
+    animation: afterBorders var(--animation-speed) forwards ease-in-out;
+}
+  
+  .variation:focus,
+  .variation:hover {
+    animation: borderColors var(--animation-speed) steps(1) forwards;
+    outline: none;
+}
+
+  .variation  .mode {
+    animation: calc(var(--animation-speed) / 5 * 3) forwards ease-in-out;
+    animation-delay: calc(var(--animation-speed) / 5 * 2);
+}
+
+@keyframes beforeBorders {
+  0% {
+    top: calc(var(--border-width) * -1);
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    width: 0;
+    height: var(--border-width);
+  }
+  33% {    
+    top: calc(var(--border-width) * -1);
+    left: calc(var(--border-width) * -1);
+    bottom: auto;
+    right: auto;
+    width: calc(var(--border-width) + 50);
+    height: var(--border-width);
+  }
+  66% {
+    top: calc(var(--border-width) * -1);
+    left: calc(var(--border-width) * -1);
+    bottom: auto;
+    right: auto;
+    width: var(--border-width);
+    height: calc((var(--border-width) * 2) + 100);
+  }
+  100% {
+    top: auto;
+    left: calc(var(--border-width) * -1);
+    bottom: calc(var(--border-width) * -1);
+    right: auto;
+    width: calc(var(--border-width) + 50%);
+    height: calc((var(--border-width) * 2) + 100);
+  }
+}
+
+@keyframes afterBorders {
+  0% {
+    top: calc(var(--border-width) * -1);
+    left: auto;
+    bottom: auto;
+    right: 50%;
+    width: 0;
+    height: var(--border-width);
+  }
+  33% {    
+    top: calc(var(--border-width) * -1);
+    left: auto;
+    bottom: auto;
+    right: calc(var(--border-width) * -1);
+    width: calc(var(--border-width) + 50);
+    height: var(--border-width);
+  }
+  66% {
+    top: calc(var(--border-width) * -1);
+    left: auto;
+    bottom: auto;
+    right: calc(var(--border-width) * -1);
+    width: var(--border-width);
+    height: calc((var(--border-width) * 2) + 100);
+  }
+  100% {
+    top: auto;
+    left: auto;
+    bottom: calc(var(--border-width) * -1);
+    right: calc(var(--border-width) * -1);
+    width: calc(var(--border-width) + 50);
+    height: calc((var(--border-width) * 2) + 100);
+  }
+}
+
+@keyframes borderColors {
+  0% {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  33% {
+    border-top-color: var(--color);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+
+  }
+  66% {
+    border-top-color: var(--color);
+    border-right-color: var(--color);
+    border-bottom-color: transparent;
+    border-left-color: var(--color);
+  }
+  100% {
+    border-top-color: var(--color);
+    border-right-color: var(--color);
+    border-bottom-color: var(--color);
+    border-left-color: var(--color);
+  }
+}
+
+/*test*/
+.page-main-dictionary .container-test {
+  width: 60%;
+  height: 300px;
+  margin-top: 50px;
+  padding: 10px;
+} 
+
+.container-test .test-start {
+  width: 70%;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #2D2F36;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+.test-start .test-text {
+  width: 100%;
+  color: grey;
+  margin: 5px;
+  padding: 5px;
+  line-height: normal;
+  text-align: center;
+}
+
+.test-start .start-test {
+  padding: 5px 15px;
+  margin: 20px 45%;
+  font-size: 22px;
+  background-color: transparent;
+  color: grey;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.start-test:hover {
+  background-color: grey;
+  color: black;
+}
+
+.container-test .form-test {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows: 70% 30%;
+  column-gap: 10px;
+  width: 70%;
+  height: 250px;
+  padding: 1px;
+  margin: 0 auto;
+  border-radius: 20px;
+  font-size: 26px;
+  background-color: #2D2F36;
+}
+
+.form-test .stat-word {
+  width: 100%;
+  padding: 20%;
+  text-align: center;
+  color: grey;
+}
+
+.form-test .dash-test {
+  width: 100%;
+  padding: 20%;
+  text-align: center;
+  color: grey;
+}
+
+.form-test .container-user-word {
+  width: 100%;
+  padding: 15px;
+}
+
+.container-user-word .user-word {
+  width: 100%;
+  font-size: 26px;
+  margin-top: 25px;
+  background-color: transparent;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.form-test .container-btn-check {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  padding: 5px;
+}
+
+.container-btn-check .check {
+  font-size: 20px;
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 15px;
+  padding: 8px 15px;
+  margin-left: 15px;
+  color: grey;
+  
+}
+
+/*dop*/
 .message {
   padding: 5px;
   color: white;
   margin-top: 5px;
+}
+
+.page-main-dictionary .hidden {
+  display: none;
 }

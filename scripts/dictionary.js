@@ -1,4 +1,8 @@
 import anime from 'animejs/lib/anime.es.js';
+import test from './test';
+
+let wordsAll =[];
+
 function workDictionary () {
 'use strict';
 
@@ -12,8 +16,10 @@ let btnBack = document.querySelector('.navigation-back'),
     rusWords = dictionary.getElementsByClassName('word-rus'),
     enWords = dictionary.getElementsByClassName('word-en'),
     formAddWord = document.querySelector('.form-new-words'),
-    currentNumPage = 1,
-    wordsAll =[];
+    btnMode = document.querySelector('.variation .mode'),
+    containerTest = document.querySelector('.container-test'),
+    btnStartTest = document.querySelector('.start-test'),
+    currentNumPage = 1;
 
 function fillPage (arr) {
     for (let i = 0; i < arr.length; i++){
@@ -169,6 +175,21 @@ formAddWord.addEventListener('submit', event => {
     }
 });
 
+btnMode.addEventListener('click', () => {
+    dictionary.classList.toggle('hidden');
+    containerTest.classList.toggle('hidden');
+
+    if(dictionary.classList.contains('hidden')) {
+        btnMode.textContent = 'Словарь';
+    } else {
+        btnMode.textContent = 'Пройти тест';
+    }
+});
+
+btnStartTest.addEventListener('click', () => {
+    test();
+});
+
 getDataDictionary().then(data => {
     calculateWordsPage(data);
 }).then(() => {
@@ -231,3 +252,4 @@ document.querySelector('.add-word').addEventListener('focus', function(e) {
 
 }
 export default workDictionary;
+export {wordsAll};
