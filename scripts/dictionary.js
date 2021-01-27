@@ -165,20 +165,24 @@ formAddWord.addEventListener('submit', event => {
 
     if(!inputRus.value || !inputEn.value) {
         showMessage(inputEn, 'err');
-    }
-    else if (inputRus.value) {
+        return;
+    } 
+
+    if(inputRus.value) {
         let rusElement = inputRus.value.toLowerCase();
 
         for (let i = 0; i < wordsAll.length; i++) {
             let rusElementInDB = wordsAll[i].rus.toLowerCase();
 
             if(rusElement === rusElementInDB) {
-                showMessage(inputEn, 'wordTru');
+                 showMessage(inputEn, 'wordTru');
+                return;
             }
         }
-    }  else {
-        let formData = new FormData(formAddWord);
-        let json = JSON.stringify(Object.fromEntries(formData.entries()));
+    }
+
+    let formData = new FormData(formAddWord);
+    let json = JSON.stringify(Object.fromEntries(formData.entries()));
     
         postData(json).then(() => {
             showMessage(formAddWord, 'good');
@@ -196,7 +200,7 @@ formAddWord.addEventListener('submit', event => {
         });
     
         formAddWord.reset();
-    }
+
 });
 
 btnMode.addEventListener('click', () => {
