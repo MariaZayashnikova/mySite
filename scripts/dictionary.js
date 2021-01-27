@@ -175,13 +175,13 @@ formAddWord.addEventListener('submit', event => {
         return;
     } 
 
-    if(inputRus.value) {
-        let rusElement = inputRus.value.toLowerCase();
+    if(inputEn.value) {
+        let enElement = inputEn.value.toLowerCase();
 
         for (let i = 0; i < wordsAll.length; i++) {
-            let rusElementInDB = wordsAll[i].rus.toLowerCase();
+            let enElementInDB = wordsAll[i].en.toLowerCase();
 
-            if(rusElement === rusElementInDB) {
+            if(enElement === enElementInDB) {
                  showMessage(inputEn, 'wordTru');
                 return;
             }
