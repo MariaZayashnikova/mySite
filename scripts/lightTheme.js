@@ -45,7 +45,7 @@ function replaceTheme (arrSelectors) {
     });
 }
 
-replaceTheme(['about-image', 'page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation']);
+replaceTheme(['page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation']);
 }
 
 export default changeTheme;

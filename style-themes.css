@@ -44,7 +44,7 @@
 .page-header .about-image {
   width: 100%;
   border-radius: 50%;
-  filter: grayscale(50%);
+  border: 1px solid#27262b;
  }
 
  .page-header .header-information {
@@ -243,14 +243,6 @@ p.contacts-name {
 }
 
 /* Светлая тема */
-
-.page-header .about-image-light {
-  filter: none;
-  width: 100%;
-  border-radius: 50%;
-  border: 1px solid grey;
- }
-
  .page-light {
    background-color: rgb(236, 215, 231);
    color:  #27262b;
@@ -838,10 +830,11 @@ svg {
   color:  #27262b;
   border-radius: 10px;
   border: 1px solid  #27262b;
+  cursor: pointer;
 }
 
 .start-test:hover {
-  background-color:  #27262b;
+  background-color:  rgba(148, 147, 147, 0.774);
   color: black;
 }
 
@@ -902,6 +895,7 @@ svg {
   padding: 8px 15px;
   margin-left: 15px;
   color:  #27262b;
+  cursor: pointer;
 }
 
 .container-test .test-end {
