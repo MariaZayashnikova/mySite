@@ -3,6 +3,41 @@ import test from './test';
 
 let wordsAll;
 
+function showMessage (parent, result) {
+    let text = {
+        good: "Успешно добавлено!",
+        err: "Введите русское и английское слова",
+        wordTru: 'Такое слово уже есть в словаре',
+        errTranslation: 'Ведите перевод слова'
+    };
+
+    let message = document.createElement('div');
+    message.classList.add('message');
+    
+    switch(result) {
+        case 'good': 
+            message.textContent = text.good;
+            parent.append(message);
+            break;
+        case 'err':
+            message.textContent = text.err;
+            parent.after(message);
+            break;
+        case 'wordTru':
+            message.textContent = text.wordTru;
+            parent.after(message);
+            break;
+        case 'errTranslation':
+            message.textContent = text.errTranslation;
+            parent.after(message);
+            break;
+    }
+    
+    let timerId = setTimeout(() => {
+        message.remove();
+    }, 3000);
+}
+
 function workDictionary () {
 'use strict';
 
@@ -19,6 +54,7 @@ let btnBack = document.querySelector('.navigation-back'),
     btnMode = document.querySelector('.variation .mode'),
     containerTest = document.querySelector('.container-test'),
     btnStartTest = document.querySelector('.start-test'),
+    containerAddWord = document.querySelector('.new-words'),
     currentNumPage = 1,
     pageWordsArr = [];
 
@@ -109,35 +145,6 @@ let postData = async (data) => {
     return await res.json();
 };
 
-function showMessage (parent, result) {
-    let text = {
-        good: "Успешно добавлено!",
-        err: "Введите русское и английское слова",
-        wordTru: 'Такое слово уже есть в словаре'
-    };
-
-    let message = document.createElement('div');
-    message.classList.add('message');
-    
-    switch(result) {
-        case 'good': 
-            message.textContent = text.good;
-            parent.append(message);
-            break;
-        case 'err':
-            message.textContent = text.err;
-            parent.after(message);
-            break;
-        case 'wordTru':
-            message.textContent = text.wordTru;
-            parent.after(message);
-    }
-    
-    let timerId = setTimeout(() => {
-        message.remove();
-    }, 3000);
-}
-
 btnNext.addEventListener('click', () => {
     if(currentNumPage === pageWordsArr.length){
         return;
@@ -206,6 +213,7 @@ formAddWord.addEventListener('submit', event => {
 btnMode.addEventListener('click', () => {
     dictionary.classList.toggle('hidden');
     containerTest.classList.toggle('hidden');
+    containerAddWord.classList.toggle('hidden');
 
     if(dictionary.classList.contains('hidden')) {
         btnMode.textContent = 'Словарь';
@@ -282,3 +290,4 @@ document.querySelector('.add-word').addEventListener('focus', function(e) {
 }
 export default workDictionary;
 export {wordsAll};
+export {showMessage};

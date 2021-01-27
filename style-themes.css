@@ -628,6 +628,7 @@ p.contacts-name {
   color: #707075;
   margin-top: 40px;
   transition: color 300ms;
+  cursor: pointer;
 }
 
 path {
@@ -815,14 +816,14 @@ svg {
   width: 70%;
   border-radius: 20px;
   font-size: 20px;
-  background-color: #2D2F36;
+  background-color: #bb8847;
   padding: 5px;
   margin: 0 auto;
 }
 
 .test-start .test-text {
   width: 100%;
-  color: grey;
+  color: #27262b;
   margin: 5px;
   padding: 5px;
   line-height: normal;
@@ -834,13 +835,13 @@ svg {
   margin: 20px 45%;
   font-size: 22px;
   background-color: transparent;
-  color: grey;
+  color:  #27262b;
   border-radius: 10px;
-  border: 1px solid grey;
+  border: 1px solid  #27262b;
 }
 
 .start-test:hover {
-  background-color: grey;
+  background-color:  #27262b;
   color: black;
 }
 
@@ -855,21 +856,21 @@ svg {
   margin: 0 auto;
   border-radius: 20px;
   font-size: 26px;
-  background-color: #2D2F36;
+  background-color: #bb8847;
 }
 
 .form-test .stat-word {
   width: 100%;
   padding: 20%;
   text-align: center;
-  color: grey;
+  color: #27262b;
 }
 
 .form-test .dash-test {
   width: 100%;
   padding: 20%;
   text-align: center;
-  color: grey;
+  color:  #27262b;
 }
 
 .form-test .container-user-word {
@@ -882,8 +883,8 @@ svg {
   font-size: 26px;
   margin-top: 25px;
   background-color: transparent;
-  color: grey;
-  border: 1px solid grey;
+  color: #27262b;
+  border: 1px solid  #27262b;
   border-radius: 5px;
 }
 
@@ -896,12 +897,48 @@ svg {
 .container-btn-check .check {
   font-size: 20px;
   background-color: transparent;
-  border: 1px solid grey;
+  border: 1px solid #27262b;
   border-radius: 15px;
   padding: 8px 15px;
   margin-left: 15px;
-  color: grey;
-  
+  color:  #27262b;
+}
+
+.container-test .test-end {
+  width: 70%;
+  padding: 1px;
+  margin: 0 auto;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #bb8847;
+}
+
+.test-end .text {
+  width: 100%;
+  padding: 5px;
+  color:  #27262b;
+  font-size: 26px;
+  line-height: normal;
+  text-align: center;
+}
+
+.test-end .result-test {
+  padding: 10px;
+  color: rgb(11, 97, 11);
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.test-end .restart-test {
+  width: 40%;
+  background: transparent;
+  border-radius: 40px;
+  border: 1px solid  #27262b;
+  padding: 15px 40px;
+  margin: 15px 27%;
+  color:  #27262b;
+  cursor: pointer;
 }
 
 /*dop*/
@@ -909,6 +946,7 @@ svg {
   padding: 5px;
   color: white;
   margin-top: 5px;
+  font-size: 14px;
 }
 
 .page-main-dictionary .hidden {
