@@ -45,7 +45,7 @@ function replaceTheme (arrSelectors) {
     });
 }
 
-replaceTheme(['page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation']);
+replaceTheme(['page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation', 'page-main-dictionary', 'functions-dictionary', 'form-new-words', 'add-word', 'mode', 'navigation', 'container-progress']);
 }
 
 export default changeTheme;

@@ -155,7 +155,9 @@ function test () {
         progressBar.textContent = `${currWidthProgress}%`;
     }
 
-    btnCheck.addEventListener('click', () => {
+    btnCheck.addEventListener('click', (event) => {
+        event.preventDefault();
+        
         if (!userWord.value) {
             showMessage(userWord, 'errTranslation');
         } else {

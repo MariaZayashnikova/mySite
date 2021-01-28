@@ -242,61 +242,6 @@ p.contacts-name {
   padding: 0;
 }
 
-/* Светлая тема */
- .page-light {
-   background-color: rgb(236, 215, 231);
-   color:  #27262b;
- }
-
- .page-header-light {
-  background-image: url("img/spaceblackOpacity8.png");
-}
-
-.theme-button-light {
-  background-color: transparent;
-  cursor: pointer;
-  color: #313131;
-  border: 1px solid #39393af8;
-}
-
-.page-main .container-gallery-light {
-  opacity: 0.9;
-}
-
-.page-main .container-english-light {
-  filter: sepia(50%);
-}
-
-.container-english .page-english-light {
-  filter: none;
-  background-color: rgb(236, 215, 231);
-  box-shadow: 3px 3px 6px 4px rgb(54, 54, 54);
-
-}
-
-.page-footer-light {
-  color: rgb(43, 42, 42);
-  font-weight: bold;
-  background-image: url("img/spaceblackOpacity8.png");
-}
-
-.container-gallery .page-gallery-light {
-  background-color:rgb(236, 215, 231);
-  box-shadow: 3px 3px 5px 3px black,
-  0 0 3px 5px rgba(255, 255, 255, 0.76);
-}
-
-.theme-button-light:focus,
-.theme-button-light:hover {
-  color: #000000;
-  background-color: #e5aef3f8;
-}
-
-.header-navigation .navigation-light {
-  color: black;
-}
-
-
 /* стили галерии */
 
 .flex {
@@ -512,6 +457,7 @@ p.contacts-name {
   width: 50%;
   padding: 10% 5%;
   height: 100%;
+  position: relative;
 }
 
 .container-dictionary  .word-rus {
@@ -536,6 +482,7 @@ p.contacts-name {
   width: 50%;
   padding: 9% 6%;
   height: 100%;
+  position: relative;
 }
 
 .pages-dictionary-left .navigation-back{
@@ -543,6 +490,9 @@ p.contacts-name {
   grid-row-start: 8;
   width: 35px;
   height: 35px;
+  position: absolute;
+  bottom: 85%;
+  left: 2%;
 }
 .container-dictionary img {
   width: 100%;
@@ -554,7 +504,9 @@ p.contacts-name {
   grid-row-start: 8;
   width: 35px;
   height: 35px;
-  margin-left: 90%;
+  position: absolute;
+  bottom: 85%;
+  right: 30%;
 }
 
 .container-dictionary .num-page-dictionary{
@@ -587,7 +539,7 @@ p.contacts-name {
   width: 100%;
   padding: 10px;
   position: absolute;
-
+  color:  #c2c2c5;
 }
 
 .form-new-words label {
@@ -596,12 +548,12 @@ p.contacts-name {
   height: 16px;
   margin-top: 20px;
   margin-bottom: 5px;
-  color:  #c2c2c5;
+
 }
 .form-new-words .input-rus-word, .input-en-word{
   background: transparent;
   border: 0;
-  color: #f2f2f2;
+  color: #d6d3d3;
   font-size: 20px;
   height: 30px;
   line-height: 30px;
@@ -998,6 +950,91 @@ svg {
   color: rgb(22, 126, 22);
   padding: 3px;
 }
+
+/* Светлая тема */
+.page-light {
+  background-color: rgb(236, 215, 231);
+  color:  #27262b;
+}
+
+.page-header-light {
+ background-image: url("img/spaceblackOpacity8.png");
+}
+
+.theme-button-light {
+ background-color: transparent;
+ cursor: pointer;
+ color:#2D2F36;
+ border: 1px solid #39393af8;
+}
+
+.page-main .container-gallery-light {
+ opacity: 0.9;
+}
+
+.page-main .container-english-light {
+ filter: sepia(50%);
+}
+
+.container-english .page-english-light {
+ filter: none;
+ background-color: rgb(236, 215, 231);
+ box-shadow: 3px 3px 6px 4px rgb(54, 54, 54);
+
+}
+
+.page-footer-light {
+ color:#2D2F36;
+ font-weight: bold;
+ background-image: url("img/spaceblackOpacity8.png");
+}
+
+.container-gallery .page-gallery-light {
+ background-color:rgb(236, 215, 231);
+ box-shadow: 3px 3px 5px 3px#2D2F36,
+ 0 0 3px 5px rgba(255, 255, 255, 0.76);
+}
+
+.theme-button-light:focus,
+.theme-button-light:hover {
+ color: #2D2F36;
+ background-color: #e5aef3f8;
+}
+
+.header-navigation .navigation-light {
+ color: #2D2F36;
+}
+
+.page-main-dictionary-light {
+ background-color: rgb(218, 167, 206);
+}
+
+.page-main-dictionary .functions-dictionary-light {
+ background-color: rgb(189, 155, 181);
+ color: #2D2F36;
+}
+
+.new-words .form-new-words-light {
+  color: #2D2F36; 
+}
+
+.form-new-words .add-word-light {
+  color: #2D2F36;
+}
+
+.functions-dictionary .mode-light {
+  color: #2D2F36;
+}
+
+.header-navigation .navigation-light a {
+  color: #2D2F36;
+  border-color: #2D2F36;
+}
+
+.form-test .container-progress-light {
+  background-color: #3332361e;
+}
+
 
 /*dop*/
 .message {
