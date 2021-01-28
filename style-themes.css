@@ -850,6 +850,29 @@ svg {
   border-radius: 20px;
   font-size: 26px;
   background-color: #bb8847;
+  position: relative;
+}
+
+.form-test .container-progress {
+  position: absolute;
+  top: -22px;
+  left: 17px;
+  width: 95%;
+  background-color: #333236ab;
+  height: 15px;
+  border-radius: 15px;
+}
+
+.container-progress .progress {
+  width: 0;
+  height: 100%;
+  background: rgb(23, 236, 236);
+  border-radius: 15px;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  color: grey;
+  font-style: italic;
 }
 
 .form-test .stat-word {
@@ -933,6 +956,47 @@ svg {
   margin: 15px 27%;
   color:  #27262b;
   cursor: pointer;
+}
+
+.test-end .result-flex {
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.result-flex .result-flex-element {
+  width: 30%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  gap: 3px;
+  border: 1px solid #27262b;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 2px;
+  font-size: 18px;
+  color: #27262b;
+}
+
+.result-flex-element .word-test {
+  padding: 3px;
+  text-align: center;
+}
+
+.result-flex-element .answer-user {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  color: rgb(247, 59, 59);
+  padding: 3px;
+} 
+
+.result-flex-element .correct-answer {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  color: rgb(22, 126, 22);
+  padding: 3px;
 }
 
 /*dop*/

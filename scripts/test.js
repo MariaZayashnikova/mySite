@@ -10,9 +10,12 @@ function test () {
           pageEndTest = document.querySelector('.test-end'),
           resultTest = document.querySelector('.result-test'),
           btnRestart = document.querySelector('.restart-test'),
+          containerAnswers = document.querySelector('.result-flex'),
+          progressBar = document.querySelector('.progress'),
           btnCheck = document.querySelector('.check');
 
     let newWordsArr = [],
+        widthProgress = 0,
         indexCurrWord,
         currVariationWord;
 
@@ -32,7 +35,6 @@ function test () {
             if(newWordsArr.some(word => word.id === element.id)){
                 i--;
             } else {
-                element.answer = false;
                 element.show = false;
                 newWordsArr.push(element);
             }
@@ -61,6 +63,7 @@ function test () {
 
     function saveData (arr, index, answerUser, variation) {
         arr[index].show = true;
+        arr[index].variationWord = variation;
 
         if(variation === 'rus') {
             let origWord = arr[index].en.toLowerCase();
@@ -69,6 +72,8 @@ function test () {
                 arr[index].isCorrect = true;
             } else {
                 arr[index].isCorrect = false;
+                arr[index].answerUser = answerUser;
+                arr[index].wordInDB = origWord;
             }
         } else {
             let origWord = arr[index].rus.toLowerCase();
@@ -77,6 +82,46 @@ function test () {
                 arr[index].isCorrect = true;
             } else {
                 arr[index].isCorrect = false;
+                arr[index].answerUser = answerUser;
+                arr[index].wordInDB = origWord;
+            }
+        }
+    }
+
+    function createTableAnswers (arrWords) {
+        let incorretWords = [];
+        arrWords.forEach(word => {
+            if(!word.isCorrect) {
+                incorretWords.push(word);
+            }
+        });
+
+        if(incorretWords.length > 0) {
+
+            for (let i = 0; i < incorretWords.length; i++) {
+                let element = document.createElement('div');
+                element. classList.add('result-flex-element');
+
+                let word = document.createElement('div');
+                word.classList.add('word-test');
+                if(incorretWords[i].variationWord === 'rus') {
+                    word.textContent = incorretWords[i].rus;
+                } else {
+                 word.textContent = incorretWords[i].en;
+                }
+                element.append(word);
+
+                let answerUser = document.createElement('div');
+                answerUser.classList.add('answer-user');
+                answerUser.textContent = incorretWords[i].answerUser;
+                element.append(answerUser);
+
+                let answerCorrect = document.createElement('div');
+                answerCorrect.classList.add('correct-answer');
+                answerCorrect.textContent = incorretWords[i].wordInDB;
+                element.append(answerCorrect);
+
+                containerAnswers.append(element);
             }
         }
     }
@@ -89,6 +134,7 @@ function test () {
             }
         });
         resultTest.textContent = result;
+        createTableAnswers(newWordsArr);
     }
     
     function testion () {
@@ -104,20 +150,36 @@ function test () {
         currVariationWord = showWord(statWord, newWordsArr, indexCurrWord);
     } 
 
+    function showProgress (currWidthProgress) {
+        progressBar.style.width = `${currWidthProgress}%`;
+        progressBar.textContent = `${currWidthProgress}%`;
+    }
+
     btnCheck.addEventListener('click', () => {
         if (!userWord.value) {
             showMessage(userWord, 'errTranslation');
         } else {
+            widthProgress += 5;
             let wordUser = userWord.value.toLowerCase();
             saveData(newWordsArr, indexCurrWord, wordUser, currVariationWord);
             userWord.value = '';
+            showProgress(widthProgress);
             testion();
         }
     });
 
     btnRestart.addEventListener('click', () => {
+        let oldResult = document.querySelectorAll('.result-flex .result-flex-element');
+        if(oldResult) {
+            oldResult.forEach(result => {
+                result.remove();
+            });
+        } 
+
         pageEndTest.classList.add('hidden');
         formTest.classList.remove('hidden');
+        widthProgress = 0;
+        showProgress(widthProgress);
         newWordsArr = [];
         indexCurrWord = 0;
         currVariationWord = 0;
