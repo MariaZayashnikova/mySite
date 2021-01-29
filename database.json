@@ -50,11 +50,18 @@
       "id": 7
     },
     {
-      "author": "",
-      "commentText": "",
+      "author": "Anonymous",
+      "commentText": "анонимный коммент",
       "image": "wolk",
       "dateComment": "29-1-2021",
       "id": 8
+    },
+    {
+      "author": "Anonymous",
+      "commentText": "f",
+      "image": "wolk",
+      "dateComment": "29-1-2021",
+      "id": 9
     }
   ],
   "words": [

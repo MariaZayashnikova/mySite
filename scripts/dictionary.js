@@ -8,7 +8,8 @@ function showMessage (parent, result) {
         good: "Успешно добавлено!",
         err: "Введите русское и английское слова",
         wordTru: 'Такое слово уже есть в словаре',
-        errTranslation: 'Ведите перевод слова'
+        errTranslation: 'Ведите перевод слова',
+        noComment: 'Введите текст комметария'
     };
 
     let message = document.createElement('div');
@@ -31,11 +32,15 @@ function showMessage (parent, result) {
             message.textContent = text.errTranslation;
             parent.append(message);
             break;
+        case 'noComment':
+            message.textContent = text.noComment;
+            parent.append(message);
+            break;
     }
     
     let timerId = setTimeout(() => {
         message.remove();
-    }, 3000);
+    }, 2000);
 }
 
 function workDictionary () {

@@ -1,10 +1,11 @@
-function workGallery () {
 'use strict';
+import {showMessage} from './dictionary';
 
-let gallery = document.querySelector('.gallery');
-let images = document.querySelectorAll('.flex .image');
-let templateModal = document.querySelector('#modal').content;
+function workGallery () {
 
+let gallery = document.querySelector('.gallery'),
+    images = document.querySelectorAll('.flex .image'),
+    templateModal = document.querySelector('#modal').content;
 
 let commentsAll;
 
@@ -81,10 +82,19 @@ function openModal (image, src, alt, comments) {
     btnClose.addEventListener('click', () => {
         modal.remove();
     });
+
     btnAddComment.addEventListener('click', (event) => {
         event.preventDefault();
 
+        if(!form.querySelector('.new-comment').value) {
+            showMessage(form.querySelector('.comment-stat'), 'noComment');
+        } else {
+            if (!form.querySelector('.input-author').value) {
+                form.querySelector('.input-author').value = 'Anonymous';
+            }
+            
         let formData = new FormData(form);
+    
         let data = Object.fromEntries(formData.entries());
         data.image = image;
 
@@ -97,15 +107,9 @@ function openModal (image, src, alt, comments) {
 
         postData(JSON.stringify(data))
         .then(() => {
-            let message = document.createElement('div');
-            message.classList.add('modal-message');
-            message.textContent = 'Ваш комментарий успешно добавлен!';
-            btnAddComment.after(message);
-            form.reset();
+            showMessage(form, 'good');
 
-            let timerId = setTimeout(() => {
-                message.remove();
-            }, 1500);
+            form.reset();
 
             commentsAll = [];
             getDataComments().then(data => {
@@ -120,7 +124,9 @@ function openModal (image, src, alt, comments) {
                 showComments(commentsAll, idImage, parent);
             });
         });
+    }
     });
+
 }
 
 images.forEach(image => {
