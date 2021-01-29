@@ -16,8 +16,16 @@ function replaceTheme (arrSelectors) {
         
         for (let i =0; i < arrSelectors.length; i++) {
             if(document.querySelector(`.${arrSelectors[i]}`)) {
-                elements.push(document.querySelector(`.${arrSelectors[i]}`));
+                let storage = document.querySelectorAll(`.${arrSelectors[i]}`);
+                storage.forEach(elem => elements.push(elem));
+
+                if(storage.length > 1) {
+                    for (let j = 0; j < storage.length; j++) {
+                        classes.push(arrSelectors[i]);
+                    }
+                } else {
                 classes.push(arrSelectors[i]);
+                }
             }
         }
 
@@ -56,7 +64,7 @@ function replaceTheme (arrSelectors) {
     });
 }
 
-replaceTheme(['page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation', 'page-main-dictionary', 'functions-dictionary', 'form-new-words', 'add-word', 'mode', 'navigation', 'container-progress']);
+replaceTheme(['page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation', 'page-main-dictionary', 'functions-dictionary', 'form-new-words', 'add-word', 'mode', 'navigation', 'container-progress', 'gallery', 'flex-element']);
 }
 
 export default changeTheme;

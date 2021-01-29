@@ -57,12 +57,13 @@ function showComments (comments, image, parent) {
     }       
 
 function openModal (image, src, alt, comments) {
-    let modal = templateModal.querySelector('.modal').cloneNode(true);
-    let img = modal.querySelector('img');
-    let parent = modal.querySelector('.comment-stat');
-    let btnClose = modal.querySelector('.modal__close');
-    let btnAddComment = modal.querySelector('.add-comment');
-    let form = modal.querySelector('.new-comment-form');
+    let modal = templateModal.querySelector('.modal').cloneNode(true),
+        img = modal.querySelector('img'),
+        parent = modal.querySelector('.comment-stat'),
+        btnClose = modal.querySelector('.modal__close'),
+        btnAddComment = modal.querySelector('.add-comment'),
+        sectionComments = modal.querySelector('.comments'),
+        form = modal.querySelector('.new-comment-form');
 
     img.src = src;
     img.alt = alt;
@@ -70,6 +71,12 @@ function openModal (image, src, alt, comments) {
     
     showComments(comments, image, parent);
     gallery.append(modal);
+
+    let currTheme = localStorage.getItem('theme');
+    if(currTheme === 'light') {
+        modal.classList.add('modal-light');
+        sectionComments.classList.add('comments-light');
+    }
 
     btnClose.addEventListener('click', () => {
         modal.remove();
