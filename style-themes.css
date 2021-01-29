@@ -524,6 +524,7 @@ p.contacts-name {
   padding: 1px;
   margin-top: 50px;
   display: flex;
+  flex-basis: auto;
 }
 
 .page-main-dictionary .new-words {
@@ -599,157 +600,54 @@ svg {
 .functions-dictionary .variation {
   width: 40%;
   margin: 5px;
-  height: 100px;
-
-  --border-width: 5px;
-  --animation-speed: 0.5s;
-  --color: #ffffff;
-  color: var(--color);
+  height: 40%;
   position: relative;
-  border: var(--border-width) solid transparent;
 }
 
 .functions-dictionary .mode {
   width: auto;
-  height: 50px;
-  margin: 40px auto;
+  height: auto;
+  margin: 15px;
   background: transparent;
   font-size: 26px;
   color: rgb(150, 143, 143);
-  position: relative;
-  display: inline-block;
-  letter-spacing: 0.05em;
   cursor: pointer;
-  padding: 5px;
-  z-index: 1;
-  border: solid var(--border-width) transparent;
+  padding: 10px;
+  transform: translate(-1%, -1%);
+  text-align: center;
+  text-decoration: none;
+  transition: .5s;
+  border: 4px solid #fff;
+  border-radius: 60px;
+  box-shadow: 0 5px 20px rgba(0,0,0, .5);
+  overflow: hidden;
 }
 
-.variation:before,
-.variation:after {
+.mode::before {
   content: '';
   position: absolute;
-  background: var(--color);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #1366ff, #ff0b6d);
+  z-index: -1;
+  border-radius: 60px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .5s ease-in-out;
 }
-  
-  .variation:focus:before,
-  .variation:hover:before {
-    animation: beforeBorders var(--animation-speed) forwards ease-in-out;
-}
-
-  .variation:focus:after,
-  .variation:hover:after {
-    animation: afterBorders var(--animation-speed) forwards ease-in-out;
-}
-  
-  .variation:focus,
-  .variation:hover {
-    animation: borderColors var(--animation-speed) steps(1) forwards;
-    outline: none;
+.mode:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
-  .variation  .mode {
-    animation: calc(var(--animation-speed) / 5 * 3) forwards ease-in-out;
-    animation-delay: calc(var(--animation-speed) / 5 * 2);
+.mode:active, .mode:focus {
+  border: 4px solid #fff;
+  outline: none;
 }
 
-@keyframes beforeBorders {
-  0% {
-    top: calc(var(--border-width) * -1);
-    left: 50%;
-    bottom: auto;
-    right: auto;
-    width: 0;
-    height: var(--border-width);
-  }
-  33% {    
-    top: calc(var(--border-width) * -1);
-    left: calc(var(--border-width) * -1);
-    bottom: auto;
-    right: auto;
-    width: calc(var(--border-width) + 50);
-    height: var(--border-width);
-  }
-  66% {
-    top: calc(var(--border-width) * -1);
-    left: calc(var(--border-width) * -1);
-    bottom: auto;
-    right: auto;
-    width: var(--border-width);
-    height: calc((var(--border-width) * 2) + 100);
-  }
-  100% {
-    top: auto;
-    left: calc(var(--border-width) * -1);
-    bottom: calc(var(--border-width) * -1);
-    right: auto;
-    width: calc(var(--border-width) + 50%);
-    height: calc((var(--border-width) * 2) + 100);
-  }
-}
 
-@keyframes afterBorders {
-  0% {
-    top: calc(var(--border-width) * -1);
-    left: auto;
-    bottom: auto;
-    right: 50%;
-    width: 0;
-    height: var(--border-width);
-  }
-  33% {    
-    top: calc(var(--border-width) * -1);
-    left: auto;
-    bottom: auto;
-    right: calc(var(--border-width) * -1);
-    width: calc(var(--border-width) + 50);
-    height: var(--border-width);
-  }
-  66% {
-    top: calc(var(--border-width) * -1);
-    left: auto;
-    bottom: auto;
-    right: calc(var(--border-width) * -1);
-    width: var(--border-width);
-    height: calc((var(--border-width) * 2) + 100);
-  }
-  100% {
-    top: auto;
-    left: auto;
-    bottom: calc(var(--border-width) * -1);
-    right: calc(var(--border-width) * -1);
-    width: calc(var(--border-width) + 50);
-    height: calc((var(--border-width) * 2) + 100);
-  }
-}
-
-@keyframes borderColors {
-  0% {
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-  }
-  33% {
-    border-top-color: var(--color);
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-
-  }
-  66% {
-    border-top-color: var(--color);
-    border-right-color: var(--color);
-    border-bottom-color: transparent;
-    border-left-color: var(--color);
-  }
-  100% {
-    border-top-color: var(--color);
-    border-right-color: var(--color);
-    border-bottom-color: var(--color);
-    border-left-color: var(--color);
-  }
-}
 
 /*test*/
 .page-main-dictionary .container-test {
@@ -857,6 +755,14 @@ svg {
   color: #27262b;
   border: 1px solid  #27262b;
   border-radius: 5px;
+}
+
+input {
+  outline: none;
+}
+
+button {
+  outline: none;
 }
 
 .form-test .container-btn-check {

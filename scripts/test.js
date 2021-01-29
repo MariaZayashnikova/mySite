@@ -12,6 +12,7 @@ function test () {
           btnRestart = document.querySelector('.restart-test'),
           containerAnswers = document.querySelector('.result-flex'),
           progressBar = document.querySelector('.progress'),
+          containerUserWord = document.querySelector('.container-user-word'),
           btnCheck = document.querySelector('.check');
 
     let newWordsArr = [],
@@ -157,9 +158,9 @@ function test () {
 
     btnCheck.addEventListener('click', (event) => {
         event.preventDefault();
-        
+
         if (!userWord.value) {
-            showMessage(userWord, 'errTranslation');
+            showMessage(containerUserWord, 'errTranslation');
         } else {
             widthProgress += 5;
             let wordUser = userWord.value.toLowerCase();

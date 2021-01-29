@@ -48,6 +48,13 @@
       "image": "wolk",
       "dateComment": "25-12-2020",
       "id": 7
+    },
+    {
+      "author": "",
+      "commentText": "",
+      "image": "wolk",
+      "dateComment": "29-1-2021",
+      "id": 8
     }
   ],
   "words": [
@@ -847,7 +854,7 @@
       "id": 167
     },
     {
-      "rus": "Корткий",
+      "rus": "Короткий",
       "en": "Short",
       "id": 168
     },
