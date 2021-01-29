@@ -5,6 +5,11 @@ function replaceTheme (arrSelectors) {
 
     let btnTheme = document.querySelector('.theme-button');
 
+    let currThemeLS = localStorage.getItem('theme');
+    if(currThemeLS === 'light') {
+        modeTheme();
+    } 
+
     function findElements (arrSelectors) {
         let elements = [];
         let classes = [];
@@ -22,7 +27,7 @@ function replaceTheme (arrSelectors) {
         };
     }
 
-    btnTheme.addEventListener('click', () => {
+    function modeTheme () {
         let obj = findElements(arrSelectors);
         let currTheme = btnTheme.getAttribute('id');
 
@@ -33,6 +38,7 @@ function replaceTheme (arrSelectors) {
             }
 
             btnTheme.setAttribute('id', 'light');
+            localStorage.setItem('theme', 'light');
 
         } else {
 
@@ -41,7 +47,12 @@ function replaceTheme (arrSelectors) {
             }
 
             btnTheme.setAttribute('id', 'dark');
+            localStorage.setItem('theme', 'dark');
         }
+    }
+
+    btnTheme.addEventListener('click', () => {
+       modeTheme();
     });
 }
 
