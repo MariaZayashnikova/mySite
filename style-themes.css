@@ -518,7 +518,7 @@ p.contacts-name {
 
 .page-main-dictionary .functions-dictionary {
   width: 30%;
-  height: 350px;
+  height: 300px;
   background-color: #2D2F36;
   border-radius: 15px;
   padding: 1px;
@@ -531,8 +531,8 @@ p.contacts-name {
   position: relative;
   background-color: transparent;
   border-radius: 30px;
-  margin: 10px auto;
-  padding: 5px;
+  margin: 5px;
+  padding: 3px;
 }
 
 .new-words .form-new-words {
@@ -543,6 +543,7 @@ p.contacts-name {
 }
 
 .form-new-words label {
+  width: 90%;
   display: block;
   font-size: 16px;
   height: 16px;
@@ -570,7 +571,9 @@ p.contacts-name {
   line-height: 30px;
   outline: none !important;
   color: #707075;
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-left: 30px;
+  padding: 1px 10px;
   transition: color 300ms;
   cursor: pointer;
 }

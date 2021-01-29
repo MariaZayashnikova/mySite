@@ -21,15 +21,15 @@ function showMessage (parent, result) {
             break;
         case 'err':
             message.textContent = text.err;
-            parent.after(message);
+            parent.append(message);
             break;
         case 'wordTru':
             message.textContent = text.wordTru;
-            parent.after(message);
+            parent.append(message);
             break;
         case 'errTranslation':
             message.textContent = text.errTranslation;
-            parent.after(message);
+            parent.append(message);
             break;
     }
     
@@ -171,7 +171,7 @@ formAddWord.addEventListener('submit', event => {
     let inputEn = formAddWord.querySelector('#en');
 
     if(!inputRus.value || !inputEn.value) {
-        showMessage(inputEn, 'err');
+        showMessage(formAddWord, 'err');
         return;
     } 
 
@@ -182,7 +182,7 @@ formAddWord.addEventListener('submit', event => {
             let enElementInDB = wordsAll[i].en.toLowerCase();
 
             if(enElement === enElementInDB) {
-                 showMessage(inputEn, 'wordTru');
+                 showMessage(formAddWord, 'wordTru');
                 return;
             }
         }
