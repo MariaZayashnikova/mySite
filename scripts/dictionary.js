@@ -1,3 +1,5 @@
+'use strict';
+
 import anime from 'animejs/lib/anime.es.js';
 import test from './test';
 
@@ -44,7 +46,6 @@ function showMessage (parent, result) {
 }
 
 function workDictionary () {
-'use strict';
 
 let btnBack = document.querySelector('.navigation-back'),
     btnNext = document.querySelector('.navigation-next'),

@@ -1,5 +1,6 @@
 'use strict';
 import {showMessage} from './dictionary';
+import {findElements, activeLightTheme} from './lightTheme';
 
 function workGallery () {
 
@@ -63,7 +64,6 @@ function openModal (image, src, alt, comments) {
         parent = modal.querySelector('.comment-stat'),
         btnClose = modal.querySelector('.modal__close'),
         btnAddComment = modal.querySelector('.add-comment'),
-        sectionComments = modal.querySelector('.comments'),
         form = modal.querySelector('.new-comment-form');
 
     img.src = src;
@@ -75,8 +75,8 @@ function openModal (image, src, alt, comments) {
 
     let currTheme = localStorage.getItem('theme');
     if(currTheme === 'light') {
-        modal.classList.add('modal-light');
-        sectionComments.classList.add('comments-light');
+        let obj = findElements(['container-modal', 'comments', 'input-author', 'new-comment']);
+        activeLightTheme(obj.Elements, obj.Classes);
     }
 
     btnClose.addEventListener('click', () => {
