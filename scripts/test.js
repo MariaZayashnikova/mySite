@@ -1,6 +1,10 @@
 import {wordsAll} from './dictionary';
 import {showMessage} from './dictionary';
 
+function getRandomNum (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function test () {
 
     const containerStart = document.querySelector('.test-start'),
@@ -24,10 +28,6 @@ function test () {
 
     containerStart.classList.add('hidden');
     formTest.classList.remove('hidden');
-
-    function getRandomNum (min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
 
     function createWordsCollection (originalArr, quantity) {
         for (let i = 0; i < quantity; i++){
@@ -195,4 +195,5 @@ function test () {
     testion();
 }
 export default test;
+export {getRandomNum};
 

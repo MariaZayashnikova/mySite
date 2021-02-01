@@ -1,62 +1,76 @@
 'use strict';
 import {showMessage} from './dictionary';
 import {findElements, activeLightTheme} from './lightTheme';
+import {getRandomNum} from './test';
 
 function workGallery () {
 
-let gallery = document.querySelector('.gallery'),
-    images = document.querySelectorAll('.flex .image'),
-    templateModal = document.querySelector('#modal').content;
+    let gallery = document.querySelector('.gallery'),
+        images = document.querySelectorAll('.flex .image'),
+        templateModal = document.querySelector('#modal').content;
 
-let commentsAll;
+    let commentsAll;
 
-async function getDataComments () {
-    let res = await fetch('http://localhost:3000/comments');
+    async function getDataComments () {
+        let res = await fetch('http://localhost:3000/comments');
 
-    return await res.json();
-}
-
-async function postData (data) {
-    let res = await fetch('http://localhost:3000/comments', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: data
-    });
-
-    if(!res.ok){
-        throw new Error(`Error. Status: ${res.status}`);
+        return await res.json();
     }
 
-    return await res.json();
-}
+    async function postData (data) {
+        let res = await fetch('http://localhost:3000/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: data
+        });
 
-function showComments (comments, image, parent) {
-    let j = 0;
-    for (let i = 0; i < comments.length; i++) {
-        if(comments[i].image === image){
-            let newComment = document.querySelector('#newComment').content;
-            let newComent = newComment.querySelector('.comment').cloneNode(true);
-            
-            newComent.querySelector('.author').textContent = comments[i].author;
-            newComent.querySelector('.dateComment').textContent = comments[i].dateComment;
-            newComent.querySelector('.commentText').textContent = comments[i].commentText;
-
-            parent.after(newComent);
-
-            j += 1;
-        } else {
-            j += 0;
+        if(!res.ok){
+            throw new Error(`Error. Status: ${res.status}`);
         }
+
+        return await res.json();
     }
+
+    function showComments (comments, image, parent) {
+        let j = 0;
+        for (let i = 0; i < comments.length; i++) {
+            if(comments[i].image === image){
+                let newComment = document.querySelector('#newComment').content;
+                let newComent = newComment.querySelector('.comment').cloneNode(true);
+            
+                newComent.querySelector('.author').textContent = comments[i].author;
+                newComent.querySelector('.dateComment').textContent = comments[i].dateComment;
+                newComent.querySelector('.commentText').textContent = comments[i].commentText;
+
+                let r = getRandomNum(0, 360);
+                let g = getRandomNum(0, 360);
+                let b = getRandomNum(0, 360);
+                newComent.querySelector('.avatar').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+                parent.after(newComent);
+
+                j += 1;
+            } else {
+                j += 0;
+            }
+        }
         if (j == 0) {
             let noCom = document.createElement('li');
             noCom.classList.add('no-comments');
             noCom.textContent = 'Нет комментариев...';
             parent.after(noCom);
         }
-    }       
+    }  
+    
+    function correctNumForYear (num) {
+        if(num < 10) {
+            num = `0${num}`;
+        }
+
+        return num;
+    }
 
 function openModal (image, src, alt, comments) {
     let modal = templateModal.querySelector('.modal').cloneNode(true),
@@ -79,8 +93,12 @@ function openModal (image, src, alt, comments) {
         activeLightTheme(obj.Elements, obj.Classes);
     }
 
-    btnClose.addEventListener('click', () => {
-        modal.remove();
+    btnClose.addEventListener('click', () => modal.remove());
+    modal.addEventListener('click', () => modal.remove());
+    document.addEventListener('keydown', (event) =>{
+        if (event.code == 'Escape' && document.querySelector('.modal')) {
+            modal.remove();
+        }
     });
 
     btnAddComment.addEventListener('click', (event) => {
@@ -100,8 +118,8 @@ function openModal (image, src, alt, comments) {
 
         let currDate = new Date();
         let year = currDate.getFullYear();
-        let month = currDate.getMonth() + 1;
-        let day = currDate.getDate();
+        let month = correctNumForYear(currDate.getMonth() + 1);
+        let day = correctNumForYear(currDate.getDate());
 
         data.dateComment = `${day}-${month}-${year}`;
 
@@ -118,9 +136,11 @@ function openModal (image, src, alt, comments) {
                 document.querySelectorAll('.comments .comment').forEach(comment => {
                     comment.remove();
                 });
-                document.querySelector('.comments .no-comments').remove();
-                let idImage = document.querySelector('.modal .image').getAttribute('id');
-                let parent = document.querySelector('.comment-stat');
+                if(document.querySelector('.comments .no-comments')){
+                    document.querySelector('.comments .no-comments').remove();
+                }
+                let idImage = modal.querySelector('.image').getAttribute('id');
+                let parent = modal.querySelector('.comment-stat');
                 showComments(commentsAll, idImage, parent);
             });
         });
