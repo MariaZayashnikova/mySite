@@ -1,4 +1,3 @@
-'use strict';
 import {showMessage} from './dictionary';
 import {findElements, activeLightTheme} from './lightTheme';
 import {getRandomNum} from './test';
