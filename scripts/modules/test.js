@@ -1,4 +1,4 @@
-import {wordsAll} from './dictionary';
+import getData from './services/getDataService';
 import {showMessage} from './dictionary';
 
 function getRandomNum (min, max) {
@@ -22,7 +22,8 @@ function test () {
     let newWordsArr = [],
         widthProgress = 0,
         indexCurrWord,
-        currVariationWord;
+        currVariationWord,
+        allWords;
 
     let quantityWordInTest = 20;
 
@@ -31,8 +32,9 @@ function test () {
 
     function createWordsCollection (originalArr, quantity) {
         for (let i = 0; i < quantity; i++){
-            let num = getRandomNum(0, originalArr.length-1);
-            let element = wordsAll[num];
+            let num = getRandomNum(0, originalArr.length - 1);
+            let element = originalArr[num];
+
             if(newWordsArr.some(word => word.id === element.id)){
                 i--;
             } else {
@@ -187,12 +189,17 @@ function test () {
         indexCurrWord = 0;
         currVariationWord = 0;
 
-        createWordsCollection(wordsAll, quantityWordInTest);
+        createWordsCollection(allWords, quantityWordInTest);
         testion();
     });
 
-    createWordsCollection(wordsAll, quantityWordInTest);
-    testion();
+    getData('http://localhost:3000/words')
+            .then(res => {
+                allWords = res;
+                createWordsCollection(allWords, quantityWordInTest);
+                testion();
+            });
+
 }
 export default test;
 export {getRandomNum};

@@ -1,7 +1,6 @@
-import changeTheme from './lightTheme';
-import workGallery from './gallery';
-import workDictionary from './dictionary';
-import test from './test';
+import changeTheme from './modules/lightTheme';
+import workGallery from './modules/gallery';
+import workDictionary from './modules/dictionary';
 
 changeTheme();
 let page = document.querySelector('[data-page]').dataset.page;
