@@ -245,6 +245,7 @@ function workDictionary () {
                 }
             });
         });
+        
     }
 
     getData(urlDictionary).then(data => {

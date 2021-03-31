@@ -7,8 +7,7 @@ function getRandomNum (min, max) {
 
 function test () {
 
-    const containerStart = document.querySelector('.test-start'),
-          formTest = document.querySelector('.form-test'),
+    const formTest = document.querySelector('.form-test'),
           statWord = document.querySelector('.stat-word'),
           userWord = document.querySelector('.user-word'),
           pageEndTest = document.querySelector('.test-end'),
@@ -17,7 +16,9 @@ function test () {
           containerAnswers = document.querySelector('.result-flex'),
           progressBar = document.querySelector('.progress'),
           containerUserWord = document.querySelector('.container-user-word'),
-          btnCheck = document.querySelector('.check');
+          btnCheck = document.querySelector('.check'),
+          prompt = document.querySelector('.container-prompt'),
+          btnSkip = document.querySelector('.btn-skip');
 
     let newWordsArr = [],
         widthProgress = 0,
@@ -25,13 +26,13 @@ function test () {
         currVariationWord,
         allWords;
 
-    let quantityWordInTest = 20;
+    let quantityWordInTest = 25;
 
-    containerStart.classList.add('hidden');
+    document.querySelector('.test-start').classList.add('hidden');
     formTest.classList.remove('hidden');
 
     function createWordsCollection (originalArr, quantity) {
-        for (let i = 0; i < quantity; i++){
+        for (let i = 0; i < quantity; i++) {
             let num = getRandomNum(0, originalArr.length - 1);
             let element = originalArr[num];
 
@@ -55,6 +56,7 @@ function test () {
     }
 
     function showWord (containerWord, arrWords, index) {
+        prompt.textContent = arrWords[index].prompt;
         if (index % 2) {
             containerWord.textContent = arrWords[index].rus;
             return 'rus';
@@ -140,10 +142,20 @@ function test () {
         createTableAnswers(newWordsArr);
     }
     
-    function testion () {
+    function startTest () {
         indexCurrWord = findWord(newWordsArr);
+        let wordNoAnswer = newWordsArr.some(itm => !itm.variationWord);
 
-        if(indexCurrWord == undefined) {
+        if(indexCurrWord == undefined && wordNoAnswer) {
+            newWordsArr.forEach(item => {
+                if(!item.variationWord) {
+                    item.show = false;
+                }
+            });
+            startTest();
+        }
+
+        if(indexCurrWord == undefined && !wordNoAnswer) {
             formTest.classList.add('hidden');
             pageEndTest.classList.remove('hidden');
             showResultTest();
@@ -164,13 +176,21 @@ function test () {
         if (!userWord.value) {
             showMessage(containerUserWord, 'errTranslation');
         } else {
-            widthProgress += 5;
+            widthProgress += 100 / quantityWordInTest;
             let wordUser = userWord.value.toLowerCase();
             saveData(newWordsArr, indexCurrWord, wordUser, currVariationWord);
             userWord.value = '';
             showProgress(widthProgress);
-            testion();
+            startTest();
         }
+    });
+
+    btnSkip.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        newWordsArr[indexCurrWord].show = true;
+        userWord.value = '';
+        startTest();
     });
 
     btnRestart.addEventListener('click', () => {
@@ -188,16 +208,19 @@ function test () {
         newWordsArr = [];
         indexCurrWord = 0;
         currVariationWord = 0;
-
-        createWordsCollection(allWords, quantityWordInTest);
-        testion();
+        getData('http://localhost:3000/words')
+            .then(res => {
+                allWords = res;
+                createWordsCollection(allWords, quantityWordInTest);
+                startTest();
+            });
     });
 
     getData('http://localhost:3000/words')
             .then(res => {
                 allWords = res;
                 createWordsCollection(allWords, quantityWordInTest);
-                testion();
+                startTest();
             });
 
 }

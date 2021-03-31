@@ -62,9 +62,15 @@
             <div class="container-user-word">
               <input type="text" class="user-word">
             </div>
-           <div class="container-btn-check">
+            
+            <div class="container-prompt"></div>
+            <div class="container-btn-check">
               <button class="check">Проверить</button>
-          </div>
+            </div>
+            
+            <div class="container-btn-skip">
+              <button class="btn-skip">Пропустить</button>
+            </div>
         </form>
         <div class="test-end hidden">
           <div class="text">
@@ -104,10 +110,12 @@
             <div>
             <form class="form-new-words">
               <label for="rus">Русское слово</label>
-                <input  type="text" name="rus" class="input-rus-word" id="rus">
-                <label for="en">English word</label>
-                <input  type="text" name="en" class="input-en-word" id="en">
-                <button class="add-word">Добавить</button>
+              <input  type="text" name="rus" class="input-rus-word" id="rus">
+              <label for="en">English word</label>
+              <input  type="text" name="en" class="input-en-word" id="en">
+              <label for="prompt">Подсказка / Prompt</label>
+              <input  type="text" name="prompt" class="input-prompt" id="prompt">
+              <button class="add-word">Добавить</button>
             </form>
           </div>
         </div>

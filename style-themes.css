@@ -558,10 +558,10 @@ p.contacts-name {
   margin-bottom: 5px;
 
 }
-.form-new-words .input-rus-word, .input-en-word{
+.form-new-words .input-rus-word, .input-en-word, .input-prompt{
   background: transparent;
   border: 0;
-  color: #d6d3d3;
+  color: #4033f5;
   font-size: 20px;
   height: 30px;
   line-height: 30px;
@@ -771,10 +771,36 @@ button {
   outline: none;
 }
 
+.form-test .container-prompt {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  padding: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.form-test .container-btn-skip {
+  grid-column-start: 1;
+  grid-row-start: 2;
+  padding: 5px;
+  margin: 5px auto;
+}
+
+.form-test .btn-skip {
+  font-size: 20px;
+  background-color: transparent;
+  border: 1px solid #3c3b3d;
+  border-radius: 15px;
+  padding: 8px 15px;
+  color:  #3c3b3d;
+  cursor: pointer;
+}
+
 .form-test .container-btn-check {
   grid-column-start: 3;
   grid-row-start: 2;
   padding: 5px;
+  margin: 5px auto;
 }
 
 .container-btn-check .check {
@@ -982,8 +1008,8 @@ button {
 /*dop*/
 .message {
   padding: 5px;
-  color: white;
-  margin-top: 5px;
+  color: rgb(236, 32, 32);
+  margin: 15px;
   font-size: 14px;
 }
 .comments-light .message {
