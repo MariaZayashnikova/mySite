@@ -209,6 +209,8 @@ function workDictionary () {
         test();
     });
 
+    
+
     function showAnimation() {
         let current = null;
         document.querySelector('#rus').addEventListener('focus', function (e) {
