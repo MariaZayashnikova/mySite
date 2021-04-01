@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style-themes.css">
+  <title>Мой сайт – Mariya_Zaya</title>
+</head>
+
+<body class="page">
+  <header class="page-header">
+    <a class="navigation-main" href="index.html"><img class="about-image" src="img/mRkcMLS3cXc.jpg" width="147"
+        height="147" alt="Mariya_Zaya"></a>
+    <div class="header-information">
+      <h1 class="page-title">Mariya_Zaya</h1>
+      <p class="information"><i>Бухгалтер, аналитик, junior developer</i></p>
+      <button id="dark" class="theme-button" type="button">Изменить тему</button>
+    </div>
+    <div class="header-navigation">
+      <ul class="navigation">
+        <li><a href="index.html">Главная</a></li>
+        <li><a data-page="gallery" href="gallery.html" class="active-navigation">Галерея</a></li>
+        <li><a href="dictionary.html">Словарь</a></li>
+      </ul>
+    </div>
+    <section class="contacts">
+      <h2 class="section-title">Контакты для связи:</h2>
+      <p class="contacts-name">Мария Заяшникова</p>
+      <p><i>email:</i> </p>
+      <p><i>телефон:</i> </p>
+    </section>
+  </header>
+  <main class="gallery">
+    <div class="flex">
+      <div class="flex-element"> <img id="wolk" class="image" src="gallery/wolk.png" alt="Волк linework"></div>
+      <div class="flex-element"><img id="devaColors" class="image" src="gallery/IMG_20180603_190714.jpg"
+          alt="Знак зодиака Дева цвет"> </div>
+      <div class="flex-element"><img id="panda" class="image" src="gallery/panda.jpg" alt="Панда linework"> </div>
+      <div class="flex-element"><img id="devaLine" class="image" src="gallery/deva.jpg"
+          alt="Знак зодиака Дева linework"> </div>
+      <div class="flex-element"><img id="anubis" class="image" src="gallery/anubis.jpg" alt="бог анубис linework"></div>
+      <div class="flex-element"><img id="strelez" class="image" src="gallery/strelez.jpg"
+          alt="Знак зодиака стрелец linework"></div>
+    </div>
+    <template id="modal">
+      <div class="modal">
+        <div class="container-modal">
+          <button type="button" class="modal__close">&times;</button>
+          <img class="image">
+          <p class="description">Описание:</p>
+          <div class="comments">
+            <ol>
+              <li class="comment-stat">Комментарии:</li>
+              <form class="new-comment-form">
+                <li class="comment-stat">
+                  <input placeholder="Ваше имя" type="text" name="author" class="input-author">
+                  <input placeholder="Новый комментарий" type="text" name="commentText" class="new-comment">
+                </li>
+                <button class="add-comment">Добавить</button>
+              </form>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template id="newComment">
+        <li class="comment">
+          <div>
+            <span class="author"></span>
+            <span class="dateComment"></span>
+          </div>
+          <div>
+            <div class="avatar"></div>
+            <span class="commentText"></span>
+          </div>
+        </li>
+    </template>
+  </main>
+  <footer class="page-footer">
+    <div class="container">
+      <p>© Mariya_Zaya</p>
+      <p>2020</p>
+    </div>
+  </footer>
+  <script src="scripts/bundle.js"></script>
+</body>
+</html>
