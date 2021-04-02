@@ -91,7 +91,7 @@ this.xOff = Math.random() * canvas.width - this.radius;
 this.yOff = Math.random() * canvas.height;
 this.distanceBetweenWaves = 50 + Math.random() * 40;
 this.count = canvas.height + this.yOff;
-this.color = '#8bc9ee';
+this.color = '#6703a1';
 this.lines = [];
 this.popping = false;
 this.maxRotation = 85;
@@ -139,7 +139,7 @@ this.render = function() {
 
   if(!this.popping) {
     ctx.beginPath();
-    ctx.strokeStyle = '#8bc9ee';
+    ctx.strokeStyle = '#6703a1';
     ctx.lineWidth = 1;
     ctx.arc(0, 0, this.radius - 3, 0, Math.PI*1.5, true);
     ctx.stroke();
@@ -221,7 +221,7 @@ this.render = function() {
   this.updateValues();
 
   ctx.beginPath();
-  ctx.strokeStyle = '#8bc9ee';
+  ctx.strokeStyle = '#6703a1';
   ctx.lineWidth = 2;
   ctx.moveTo(this.x, this.y);
   if(this.x < this.bubble.position.x) {

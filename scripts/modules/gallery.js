@@ -13,29 +13,47 @@ function workGallery () {
     let commentsAll,
         urlGallery = 'http://localhost:3000/comments';
 
-    function showComments (comments, image, parent) {
-        let j = 0;
+    function showComments (comments, image, parent, startIndex = 0) {
+        let j = startIndex;
         for (let i = 0; i < comments.length; i++) {
             if(comments[i].image === image){
-                let newComment = document.querySelector('#newComment').content;
-                let newComent = newComment.querySelector('.comment').cloneNode(true);
-            
-                newComent.querySelector('.author').textContent = comments[i].author;
-                newComent.querySelector('.dateComment').textContent = comments[i].dateComment;
-                newComent.querySelector('.commentText').textContent = comments[i].commentText;
+                if (j === 5) {
+                    let newComment = document.querySelector('#newComment').content;
+                    let newComent = newComment.querySelector('.comment').cloneNode(true);
+                    newComent.textContent = 'Показать все комментарии';
+                    newComent.classList.add('show-all-comments');
+                    parent.append(newComent);
+                    newComent.addEventListener('click', () => {
+                        document.querySelectorAll('.comment').forEach(item => {
+                            item.remove();
+                        });
+                        showComments(comments, image, parent, 6);
+                    }); 
+                    break;
 
-                let r = getRandomNum(0, 360);
-                let g = getRandomNum(0, 360);
-                let b = getRandomNum(0, 360);
-                newComent.querySelector('.avatar').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                } else {
+                    let newComment = document.querySelector('#newComment').content;
+                    let newComent = newComment.querySelector('.comment').cloneNode(true);
 
-                parent.after(newComent);
+                    newComent.querySelector('.author').textContent = comments[i].author;
+                    newComent.querySelector('.dateComment').textContent = comments[i].dateComment;
+                    newComent.querySelector('.commentText').textContent = comments[i].commentText;
 
-                j += 1;
+                    let r = getRandomNum(0, 360);
+                    let g = getRandomNum(0, 360);
+                    let b = getRandomNum(0, 360);
+                    newComent.querySelector('.avatar').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+                    parent.append(newComent);
+
+                    j += 1;
+                }
+
             } else {
                 j += 0;
             }
         }
+
         if (j == 0) {
             let noCom = document.createElement('li');
             noCom.classList.add('no-comments');
@@ -120,8 +138,10 @@ function workGallery () {
                         commentsAll = [];
                         getData(urlGallery).then(data => {
                             commentsAll = data;
+                            commentsAll.reverse();
                         })
                         .then(() => {
+                            let check = document.querySelector('.show-all-comments');
                             document.querySelectorAll('.comments .comment').forEach(comment => {
                                 comment.remove();
                             });
@@ -130,7 +150,13 @@ function workGallery () {
                             }
                             let idImage = modal.querySelector('.image').getAttribute('id');
                             let parent = modal.querySelector('.comment-stat');
-                            showComments(commentsAll, idImage, parent);
+                            if(check) {
+                                console.log('усть кпонка');
+                                showComments(commentsAll, idImage, parent);
+                            } else {
+                                showComments(commentsAll, idImage, parent, 6);
+                            }
+                            
                         });
                     });
             }
@@ -145,6 +171,7 @@ function workGallery () {
                 altImage = event.target.getAttribute('alt');
             getData(urlGallery).then(data => {
                 commentsAll = data;
+                commentsAll.reverse();
             }).then(() => openModal(idImage, srcImage, altImage, commentsAll));
         });
     });

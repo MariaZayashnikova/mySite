@@ -62,6 +62,27 @@
       "image": "panda",
       "dateComment": "31-01-2021",
       "id": 9
+    },
+    {
+      "author": "Anonymous",
+      "commentText": "что за красные пятна?",
+      "image": "wolk",
+      "dateComment": "02-04-2021",
+      "id": 10
+    },
+    {
+      "author": "Anonymous",
+      "commentText": "test six comment",
+      "image": "wolk",
+      "dateComment": "02-04-2021",
+      "id": 11
+    },
+    {
+      "author": "Anonymous",
+      "commentText": "again new commit",
+      "image": "wolk",
+      "dateComment": "02-04-2021",
+      "id": 12
     }
   ],
   "words": [
