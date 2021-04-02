@@ -81,6 +81,14 @@ function workGallery () {
             }
         });
 
+        modal.addEventListener('click', (e) => {
+            let target = e.target;
+
+            if(target && target.classList.contains('modal')) {
+                modal.remove();
+            }
+        });
+
         btnAddComment.addEventListener('click', (event) => {
             event.preventDefault();
 
@@ -112,7 +120,8 @@ function workGallery () {
                         commentsAll = [];
                         getData(urlGallery).then(data => {
                             commentsAll = data;
-                        }).then(() => {
+                        })
+                        .then(() => {
                             document.querySelectorAll('.comments .comment').forEach(comment => {
                                 comment.remove();
                             });
