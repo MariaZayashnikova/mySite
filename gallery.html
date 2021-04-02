@@ -33,6 +33,7 @@
   </header>
   <main class="gallery">
     <div class="flex">
+      
       <div class="flex-element"> <img id="wolk" class="image" src="gallery/wolk.png" alt="Волк linework"></div>
       <div class="flex-element"><img id="devaColors" class="image" src="gallery/IMG_20180603_190714.jpg"
           alt="Знак зодиака Дева цвет"> </div>
@@ -42,12 +43,15 @@
       <div class="flex-element"><img id="anubis" class="image" src="gallery/anubis.jpg" alt="бог анубис linework"></div>
       <div class="flex-element"><img id="strelez" class="image" src="gallery/strelez.jpg"
           alt="Знак зодиака стрелец linework"></div>
+      <canvas></canvas>
     </div>
     <template id="modal">
       <div class="modal">
         <div class="container-modal">
           <button type="button" class="modal__close">&times;</button>
-          <img class="image">
+          <div class="container-img-modal">
+            <img class="image">
+          </div>
           <p class="description">Описание:</p>
           <div class="comments">
             <ol>
@@ -76,6 +80,7 @@
           </div>
         </li>
     </template>
+   
   </main>
   <footer class="page-footer">
     <div class="container">
