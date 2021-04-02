@@ -12,8 +12,8 @@
   min-width: 640px;
   min-height: 100vh;
   margin: 0;
-  font-family: "Verdana", "Tahoma", sans-serif;
-  font-size: 14px;
+  font-family: "Comic", "Sans MS", "Comic Sans", cursive;
+  font-size: 16px;
   line-height: 18px;
   color: #d3d0d0;
   background-color: #27262b;
@@ -34,6 +34,10 @@
   display: flex;
   align-items: center;
   background-image: url("img/spacewhiteOpacity8.png");
+}
+
+button {
+  font-family: "Comic", "Sans MS", "Comic Sans", cursive;
 }
 
 .page-header .navigation-main {
@@ -70,8 +74,9 @@
   padding-right: 16px;
   padding-bottom: 7px;
   padding-left: 16px;
-  font-size: 12px;
-  border-radius: 2px;
+  font-size: 13px;
+  line-height: 10px;
+  border-radius: 5px;
   background-color: transparent;
   cursor: pointer;
   color: #d3d0d0;
@@ -255,6 +260,7 @@ p.contacts-name {
   justify-content: space-around;
   align-items: center;
   padding: 1%;
+  position: relative;
 }
 
 .flex .flex-element{
@@ -263,14 +269,15 @@ p.contacts-name {
   margin: 10px;
   border-radius: 10%;
   box-shadow: 0 0 5px 0 #aca5a549;
+  z-index: 11;
 }
 
 .gallery .image {
   width: 100%;
+  height: 100%;
   padding: 20px;
   border-radius: 80px;
   filter: brightness(85%) contrast(1.1);
-  
 }
 
 .title_gallery{
@@ -293,19 +300,25 @@ p.contacts-name {
   top: 0;
   left: 0;
   overflow: hidden;
-  background:rgba(97, 97, 97, 0.034);
+  background:rgba(97, 97, 97, 0.404);
+  z-index: 11;
 }
 
 
 .modal .container-modal {
   position: relative;
-  width: 50%;
-  height: auto;
+  width: 40%;
   padding: 5px;
   margin: 20px auto;
   background-color: rgb(90, 82, 90);
   border-radius: 20px;
   border: 5px outset #434344; 
+}
+
+.container-modal .container-img-modal {
+  width: 80%;
+  max-height: 900px;
+  margin: 10px auto;
 }
 
 .modal .description {
@@ -421,16 +434,17 @@ p.contacts-name {
 
 .modal .modal__close {
   width: 30px;
-  height: 30px;
   position: absolute;
   top: 5px;
   right: 10px;
   font-size: 24px;
+  line-height: 20px;
   border: 1px solid rgb(160, 159, 159);
   color: rgb(160, 159, 159);
-  border-radius: 55%;
+  border-radius: 47%;
   background: transparent;
   cursor: pointer;
+
 }
 
 /*dictionary*/
@@ -500,11 +514,13 @@ p.contacts-name {
   bottom: 85%;
   left: 2%;
 }
+
 .container-dictionary img {
   width: 100%;
   opacity: 0.6;
   height: 100%;
 }
+
 .pages-dictionary-right .navigation-next{
   grid-column-start: 3;
   grid-row-start: 8;
@@ -523,80 +539,57 @@ p.contacts-name {
 }
 
 .page-main-dictionary .functions-dictionary {
-  width: 30%;
-  height: 300px;
+  min-width: 15%;
+  height: 340px;
   background-color: #2D2F36;
   border-radius: 15px;
-  padding: 1px;
-  margin-top: 50px;
+  padding: 3px;
+  margin: 50px 2px 2px 2px;
   display: flex;
-  flex-basis: auto;
 }
 
 .page-main-dictionary .new-words {
-  width: 60%;
-  position: relative;
   background-color: transparent;
-  border-radius: 30px;
-  margin: 5px;
+  margin: 5px 10px;
   padding: 3px;
 }
 
 .new-words .form-new-words {
-  width: 100%;
-  padding: 10px;
-  position: absolute;
+  padding: 5px;
   color:  #c2c2c5;
 }
 
 .form-new-words label {
   width: 90%;
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   height: 16px;
   margin-top: 20px;
   margin-bottom: 5px;
-
 }
+
 .form-new-words .input-rus-word, .input-en-word, .input-prompt{
   background: transparent;
   border: 0;
-  color: #4033f5;
+  color: #b3f4f7;
   font-size: 20px;
   height: 30px;
   line-height: 30px;
-  outline: none !important;
+  text-shadow: 0 0 5px rgb(255, 255, 255);
 }
 
 .form-new-words .add-word {
   display: block;
-  width: 40%;
+  text-align: center;
   background: transparent;
-  border: 0;
+  border-radius: 20px;
+  border: 2px solid #cfcfcf;
   font-size: 20px;
-  height: 30px;
-  line-height: 30px;
-  outline: none !important;
-  color: #707075;
-  margin-top: 20px;
-  margin-left: 30px;
-  padding: 1px 10px;
-  transition: color 300ms;
+  color: #c2c2c5;
+  margin: 20px 0 15px 30px;
+  padding: 5px 10px;
   cursor: pointer;
-}
-
-path {
-  fill: none;
-  stroke: url(#linearGradient);;
-  stroke-width: 4;
-  stroke-dasharray: 240 1386;
-}
-
-svg {
-  position: absolute;
-  width: 75%;
-  top: 0;
-  left: 0;
+  box-shadow: 0 5px 20px rgba(0,0,0, .5);
 }
 
 .add-word:focus {
@@ -604,23 +597,18 @@ svg {
 }
 
 .functions-dictionary .variation {
-  width: 40%;
-  margin: 5px;
-  height: 40%;
+  padding: 5px;
   position: relative;
+  margin: 5px auto;
 }
 
 .functions-dictionary .mode {
-  width: auto;
-  height: auto;
-  margin: 15px;
   background: transparent;
   font-size: 26px;
   color: rgb(150, 143, 143);
   cursor: pointer;
   padding: 10px;
   transform: translate(-1%, -1%);
-  text-align: center;
   text-decoration: none;
   transition: .5s;
   border: 4px solid #fff;
@@ -765,6 +753,7 @@ svg {
 
 input {
   outline: none;
+  font-family: "Comic", "Sans MS", "Comic Sans", cursive;
 }
 
 button {
@@ -1003,13 +992,17 @@ button {
   border: 1px solid grey;
 }
 
+.form-new-words .input-rus-word-light, .input-en-word-light, .input-prompt-light{
+  color: rgb(71, 70, 70);
+}
+
 
 
 /*dop*/
 .message {
-  padding: 5px;
+  padding: 2px;
   color: rgb(236, 32, 32);
-  margin: 15px;
+  margin: 15px 5px;
   font-size: 14px;
 }
 .comments-light .message {
@@ -1018,4 +1011,14 @@ button {
 
 .page-main-dictionary .hidden {
   display: none;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
