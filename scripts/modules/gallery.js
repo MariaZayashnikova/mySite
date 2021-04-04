@@ -102,7 +102,7 @@ function workGallery () {
         modal.addEventListener('click', (e) => {
             let target = e.target;
 
-            if(target && target.classList.contains('modal')) {
+            if (target && target.classList.contains('modal')) {
                 modal.remove();
             }
         });
@@ -136,28 +136,36 @@ function workGallery () {
                         form.reset();
 
                         commentsAll = [];
-                        getData(urlGallery).then(data => {
-                            commentsAll = data;
-                            commentsAll.reverse();
-                        })
-                        .then(() => {
-                            let check = document.querySelector('.show-all-comments');
-                            document.querySelectorAll('.comments .comment').forEach(comment => {
-                                comment.remove();
+                        getData(urlGallery)
+                            .then(data => {
+                                commentsAll = data;
+                                commentsAll.reverse();
+                            })
+                            .then(() => {
+                                let check = document.querySelector('.show-all-comments');
+                                document.querySelectorAll('.comments .comment').forEach(comment => {
+                                    comment.remove();
+                                });
+                                if (document.querySelector('.comments .no-comments')) {
+                                    document.querySelector('.comments .no-comments').remove();
+                                }
+                                let idImage = modal.querySelector('.image').getAttribute('id');
+                                let parent = modal.querySelector('.comment-stat');
+                                if (check) {
+                                    console.log('усть кпонка');
+                                    showComments(commentsAll, idImage, parent);
+                                } else {
+                                    showComments(commentsAll, idImage, parent, 6);
+                                }
+
+                                console.log(parent);
+                            })
+                            .catch(() => {
+                                showMessage(parent, 'err');
                             });
-                            if (document.querySelector('.comments .no-comments')) {
-                                document.querySelector('.comments .no-comments').remove();
-                            }
-                            let idImage = modal.querySelector('.image').getAttribute('id');
-                            let parent = modal.querySelector('.comment-stat');
-                            if(check) {
-                                console.log('усть кпонка');
-                                showComments(commentsAll, idImage, parent);
-                            } else {
-                                showComments(commentsAll, idImage, parent, 6);
-                            }
-                            
-                        });
+                    })
+                    .catch(() => {
+                        showMessage(form, 'err');
                     });
             }
         });
@@ -169,10 +177,15 @@ function workGallery () {
             let idImage = event.target.getAttribute('id'),
                 srcImage = event.target.getAttribute('src'),
                 altImage = event.target.getAttribute('alt');
-            getData(urlGallery).then(data => {
-                commentsAll = data;
-                commentsAll.reverse();
-            }).then(() => openModal(idImage, srcImage, altImage, commentsAll));
+            getData(urlGallery)
+                .then(data => {
+                    commentsAll = data;
+                    commentsAll.reverse();
+                })
+                .then(() => openModal(idImage, srcImage, altImage, commentsAll))
+                .catch(() => {
+                    showMessage(image.parentNode, 'err');
+                });
         });
     });
 }

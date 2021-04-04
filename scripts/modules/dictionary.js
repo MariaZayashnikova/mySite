@@ -8,7 +8,8 @@ import test from './test';
 function showMessage (parent, result) {
     let text = {
         good: "Успешно добавлено!",
-        err: "Введите русское и английское слова",
+        noWord: "Введите русское и английское слова",
+        err: "Что-то пошло не так... Попробуйте позже",
         wordTru: 'Такое слово уже есть в словаре',
         errTranslation: 'Ведите перевод слова',
         noComment: 'Введите текст комметария'
@@ -20,9 +21,13 @@ function showMessage (parent, result) {
     switch(result) {
         case 'good': 
             message.textContent = text.good;
+            message.style.color = 'green';
             break;
         case 'err':
             message.textContent = text.err;
+            break;
+        case 'noWord':
+            message.textContent = text.noWord;
             break;
         case 'wordTru':
             message.textContent = text.wordTru;
@@ -154,7 +159,7 @@ function workDictionary () {
         let inputEn = formAddWord.querySelector('#en');
 
         if (!inputRus.value || !inputEn.value) {
-            showMessage(formAddWord, 'err');
+            showMessage(formAddWord, 'noWord');
             return;
         }
 
@@ -174,23 +179,31 @@ function workDictionary () {
         let formData = new FormData(formAddWord);
         let json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-        postData(urlDictionary, json).then(() => {
-            showMessage(formAddWord, 'good');
+        postData(urlDictionary, json)
+            .then(() => {
+                showMessage(formAddWord, 'good');
 
-            getData(urlDictionary).then(data => {
-                wordsAll = 0;
-                wordsAll = data;
-                pageWordsArr = [];
-                calculateWordsPage(data, pageWordsArr);
-            }).then(() => {
-                clearPage();
-                let index = currentNumPage;
-                fillPage(pageWordsArr[index - 1]);
+                getData(urlDictionary)
+                    .then(data => {
+                        wordsAll = 0;
+                        wordsAll = data;
+                        pageWordsArr = [];
+                        calculateWordsPage(data, pageWordsArr);
+                    })
+                    .then(() => {
+                        clearPage();
+                        let index = currentNumPage;
+                        fillPage(pageWordsArr[index - 1]);
+                        formAddWord.reset();
+                        inputRus.focus();
+                    })
+                    .catch(() => {
+                        showMessage(pageLeft, 'err');
+                    });
+            })
+            .catch(() => {
+                showMessage(formAddWord, 'err');
             });
-        });
-
-        formAddWord.reset();
-
     });
 
     btnMode.addEventListener('click', () => {
@@ -257,6 +270,9 @@ function workDictionary () {
         new createPages(pageWordsArr[0], pageLeft, pageRight);
     }).then(() => {
         fillPage(pageWordsArr[0]);
+    })
+    .catch(() => {
+        showMessage(pageLeft, 'err');
     });
 
     showAnimation();
