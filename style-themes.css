@@ -477,6 +477,28 @@ p.contacts-name {
   display: flex;
   font-size: 20px;
   line-height: 18px;
+  position: relative;
+}
+
+.container-dictionary .search-panel-dictionary {
+  width: 300px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 10;
+}
+
+.search-panel-dictionary input {
+  width: 100%;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 10px;
+  padding: 1px 5px;
+  font-size: 16px;
+  line-height: 20px;
+  text-shadow: 0 0 4px rgb(255 255 255);
+  color: rgb(71, 70, 70);
 }
 
 .container-dictionary .pages-dictionary-left {
@@ -547,6 +569,27 @@ p.contacts-name {
   font-weight: bold;
 }
 
+.dop-function .panel-foundElem {
+  margin: 20px 2px;
+  background: rgba(255, 255, 255, 0.342);
+  width: 280px;
+  height: 200px;
+  border-radius: 20px;
+  padding: 5px;
+  line-height: 30px;
+  overflow: auto;
+}
+
+.panel-foundElem span {
+  padding: 5px;
+  margin: 5px;
+}
+
+.panel-foundElem .panel-title {
+  margin: 0 60px;
+
+}
+
 .page-main-dictionary .functions-dictionary {
   min-width: 15%;
   height: 340px;
@@ -584,7 +627,7 @@ p.contacts-name {
   font-size: 20px;
   height: 30px;
   line-height: 30px;
-  text-shadow: 0 0 5px rgb(255, 255, 255);
+  text-shadow: 0 0 4px rgb(255, 255, 255);
 }
 
 .form-new-words .add-word {

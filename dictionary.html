@@ -30,22 +30,25 @@
   </header>
     <main class="page-main-dictionary">
         <div class="container-dictionary">
-                <div class="pages-dictionary-left">
-                  <div class="num-page-dictionary"></div>
-                  <div></div>
-                  <div></div>
-                  <a href="#" class="navigation-back"><img src="img/arrow-left-circle.svg" alt="Назад" data-back></a>
-                </div>
-                <div class="pages-dictionary-right">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <a href="#" class="navigation-next"><img src="img/arrow-right-circle.svg" alt="Вперед" data-next></a>
-                </div>
+          <div class="search-panel-dictionary">
+            <input type="text" placeholder="Поиск по словарю">
+          </div>
+          <div class="pages-dictionary-left">
+            <div class="num-page-dictionary"></div>
+            <div></div>
+            <div></div>
+            <a href="#" class="navigation-back"><img src="img/arrow-left-circle.svg" alt="Назад" data-back></a>
+          </div>
+          <div class="pages-dictionary-right">
+            <div></div>
+            <div></div>
+            <div></div>
+            <a href="#" class="navigation-next"><img src="img/arrow-right-circle.svg" alt="Вперед" data-next></a>
+          </div>
         </div>
         <div class="container-test hidden">
           <div class="test-start">
-            <div class="test-text">Тестирование работает на основе данных словаря. Количество слов - 20.
+            <div class="test-text">Тестирование работает на основе данных словаря. Количество слов - <span class="quantity-word"></span>.
                <br>
                 Вариант ответа может быть один, в неопределённых случаях выбирайте самый распространенный вариант перевода.
                 <br>
@@ -60,7 +63,7 @@
             <div class="stat-word">word</div>
             <div class="dash-test">-</div>
             <div class="container-user-word">
-              <input type="text" class="user-word">
+              <input type="text" class="user-word" autofocus>
             </div>
             
             <div class="container-prompt"></div>
@@ -83,22 +86,27 @@
           <button type="button" class="restart-test">Пройти еще раз</button>
         </div>
         </div>
-        <div class="functions-dictionary">
-          <div class="new-words">
-            <form class="form-new-words">
-              <label for="rus">Русское слово</label>
-              <input  type="text" name="rus" class="input-rus-word" id="rus" autofocus>
-              <label for="en">English word</label>
-              <input  type="text" name="en" class="input-en-word" id="en">
-              <label for="prompt">Подсказка / Prompt</label>
-              <input  type="text" name="prompt" class="input-prompt" id="prompt">
-              <button class="add-word">Добавить</button>
-            </form>
+        <div class="dop-function">
+          <div class="panel-foundElem hidden">
+            <span class="panel-title">Найдено:</span>
+          </div>
+          <div class="functions-dictionary">
+            <div class="new-words">
+              <form class="form-new-words">
+                <label for="rus">Русское слово</label>
+                <input type="text" name="rus" class="input-rus-word" id="rus" autofocus>
+                <label for="en">English word</label>
+                <input type="text" name="en" class="input-en-word" id="en">
+                <label for="prompt">Подсказка / Prompt</label>
+                <input type="text" name="prompt" class="input-prompt" id="prompt">
+                <button class="add-word">Добавить</button>
+              </form>
+            </div>
+            <div class="variation">
+              <button class="mode">Пройти тест</button>
+            </div>
+          </div>
         </div>
-        <div class="variation">
-          <button class="mode">Пройти тест</button>
-        </div>
-      </div>
     </main>
     <footer class="page-footer">
       <div class="container">

@@ -5,6 +5,8 @@ function getRandomNum (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+let quantityWordInTest = 25;
+
 function test () {
 
     const formTest = document.querySelector('.form-test'),
@@ -25,8 +27,6 @@ function test () {
         indexCurrWord,
         currVariationWord,
         allWords;
-
-    let quantityWordInTest = 25;
 
     document.querySelector('.test-start').classList.add('hidden');
     formTest.classList.remove('hidden');
@@ -226,4 +226,5 @@ function test () {
 }
 export default test;
 export {getRandomNum};
+export {quantityWordInTest};
 
