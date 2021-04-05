@@ -4,6 +4,7 @@ import anime from 'animejs/lib/anime.es.js';
 import getData from './services/getDataService';
 import postData from './services/postDataService';
 import test from './test';
+import {quantityWordInTest} from './test';
 
 function showMessage (parent, result) {
     let text = {
@@ -65,9 +66,85 @@ function workDictionary () {
         containerAddWord = document.querySelector('.new-words'),
         currentNumPage = 1,
         pageWordsArr = [],
-        urlDictionary = 'http://localhost:3000/words';
+        urlDictionary = 'http://localhost:3000/words',
+        search = document.querySelector('.search-panel-dictionary input');
 
     let wordsAll;
+
+    document.querySelector('.quantity-word').textContent = quantityWordInTest;
+
+    function createTableFoundElemSearch(elem, parent, language) {
+        let container = document.createElement('div');
+        let word = document.createElement('span');
+        let dash = document.createElement('span');
+        let translate = document.createElement('span');
+
+        if(language === 'rus') {
+            word.textContent = elem.rus;
+            translate.textContent = elem.en;
+        } else {
+            word.textContent = elem.en;
+            translate.textContent = elem.rus;
+        }
+
+        dash.textContent = '-';
+
+        container.append(word);
+        container.append(dash);
+        container.append(translate);
+        parent.append(container);
+    }
+
+    function searchPanel() {
+        search.addEventListener('input', () => {
+            let containerPanel = document.querySelector('.panel-foundElem');
+
+            let old = containerPanel.querySelectorAll('span');
+
+            function clearResult() {
+                old.forEach(item => {
+                    if(!item.classList.contains('panel-title')){
+                        item.remove();
+                    }
+                });
+            }
+            clearResult();
+            
+            let value = search.value.toLowerCase();
+
+            if(value.length === 0) {
+                clearResult();
+                containerPanel.classList.add('hidden');
+                return;
+            } 
+            let language;
+            let foundElements = wordsAll.filter(item => {
+                let rus = item.rus.toLowerCase();
+                let en = item.en.toLowerCase();
+
+                if (rus.indexOf(value) >= 0) {
+                    language = 'rus';
+                    return true;
+                }
+
+                if (en.indexOf(value) >= 0) {
+                    language = 'en';
+                    return true;
+                }
+            });
+
+            containerPanel.classList.remove('hidden');
+
+            if (foundElements.length > 0) {
+                containerPanel.querySelector('.panel-title').textContent = 'Найдено:';
+                foundElements.forEach(item => {
+                    createTableFoundElemSearch(item, containerPanel, language);
+                });
+            } else {
+                containerPanel.querySelector('.panel-title').textContent = 'Совпадений нет';
+            }
+        });
+    }
 
     function fillPage(arr) {
         for (let i = 0; i < arr.length; i++) {
@@ -270,6 +347,7 @@ function workDictionary () {
         new createPages(pageWordsArr[0], pageLeft, pageRight);
     }).then(() => {
         fillPage(pageWordsArr[0]);
+        searchPanel();
     })
     .catch(() => {
         showMessage(pageLeft, 'err');
