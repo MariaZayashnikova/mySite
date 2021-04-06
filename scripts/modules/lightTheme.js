@@ -69,7 +69,7 @@ function changeTheme () {
     });
 }
 
-replaceTheme(['page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation', 'page-main-dictionary', 'functions-dictionary', 'form-new-words', 'add-word', 'mode', 'navigation', 'container-progress', 'gallery', 'flex-element', 'input-rus-word', 'input-en-word', 'input-prompt']);
+replaceTheme(['page', 'page-header', 'container-gallery', 'page-footer', 'container-english', 'page-gallery', 'page-english', 'theme-button', 'navigation', 'page-main-dictionary', 'functions-dictionary', 'form-new-words', 'add-word', 'mode', 'navigation', 'container-progress', 'gallery', 'flex-element', 'input-rus-word', 'input-en-word', 'input-prompt', 'search-input', 'panel-foundElem']);
 }
 
 export default changeTheme;
