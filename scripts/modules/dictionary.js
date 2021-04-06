@@ -79,6 +79,8 @@ function workDictionary () {
         let dash = document.createElement('span');
         let translate = document.createElement('span');
 
+        container.setAttribute('data-id-element', elem.id);
+
         if(language === 'rus') {
             word.textContent = elem.rus;
             translate.textContent = elem.en;
@@ -89,25 +91,75 @@ function workDictionary () {
 
         dash.textContent = '-';
 
+        let arr = [];
+        arr.push(word);
+        arr.push(translate);
+
+        arr.forEach(elem => {
+            elem.addEventListener('click', (e) => {
+                if(e.target) {
+                    let id = e.target.parentNode.getAttribute('data-id-element');
+                    findWordInDictionary(id);
+    
+                    document.querySelectorAll('.word-rus').forEach(item => {
+                        if(item.textContent == e.target.textContent) {
+                            item.style.color = 'rgb(24 21 218)';
+                            item.style.fontWeight = 'bold';
+                            setTimeout(() => {
+                                item.style.color = '';
+                                item.style.fontWeight = '';
+                            }, 1000);
+                        }
+                    });
+                    document.querySelectorAll('.word-en').forEach(item => {
+                        if(item.textContent == e.target.textContent) {
+                            item.style.color = 'rgb(24 21 218)';
+                            item.style.fontWeight = 'bold';
+                            setTimeout(() => {
+                                item.style.color = '';
+                                item.style.fontWeight = '';
+                            }, 1000);
+                        }
+                    });
+                }
+            });
+        });
+
         container.append(word);
         container.append(dash);
         container.append(translate);
         parent.append(container);
     }
 
+    function findWordInDictionary(id) {
+        let numPage;
+        pageWordsArr.forEach((item, i) => {
+            item.forEach(elem => {
+                if(elem.id === +id) {
+                    numPage = i;
+                    return;
+                }
+            });
+        });
+
+        clearPage();
+        let index = numPage;
+        currentNumPage = numPage + 1;
+        fillPage(pageWordsArr[index]);
+    }
+
     function searchPanel() {
         search.addEventListener('input', () => {
             let containerPanel = document.querySelector('.panel-foundElem');
 
-            let old = containerPanel.querySelectorAll('span');
+            let old = containerPanel.querySelectorAll('div');
 
             function clearResult() {
                 old.forEach(item => {
-                    if(!item.classList.contains('panel-title')){
-                        item.remove();
-                    }
+                    item.remove();
                 });
             }
+
             clearResult();
             
             let value = search.value.toLowerCase();
@@ -299,47 +351,6 @@ function workDictionary () {
         test();
     });
 
-    
-
-    function showAnimation() {
-        let current = null;
-        document.querySelector('#rus').addEventListener('focus', function (e) {
-            if (current) {
-                current.pause();
-            }
-            current = anime({
-                targets: 'path',
-                strokeDashoffset: {
-                    value: 0,
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                },
-                strokeDasharray: {
-                    value: '240 1386',
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                }
-            });
-        });
-        document.querySelector('#en').addEventListener('focus', function (e) {
-            if (current) { current.pause(); }
-            current = anime({
-                targets: 'path',
-                strokeDashoffset: {
-                    value: -336,
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                },
-                strokeDasharray: {
-                    value: '240 1386',
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                }
-            });
-        });
-        
-    }
-
     getData(urlDictionary).then(data => {
         wordsAll = data;
         calculateWordsPage(data, pageWordsArr);
@@ -352,8 +363,6 @@ function workDictionary () {
     .catch(() => {
         showMessage(pageLeft, 'err');
     });
-
-    showAnimation();
 
 }
 export default workDictionary;

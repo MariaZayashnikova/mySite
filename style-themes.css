@@ -488,10 +488,9 @@ p.contacts-name {
   z-index: 10;
 }
 
-.search-panel-dictionary input {
+.search-panel-dictionary .search-input {
   width: 100%;
   height: 30px;
-  background: rgba(255, 255, 255, 0.5);
   border: none;
   border-radius: 10px;
   padding: 1px 5px;
@@ -571,7 +570,7 @@ p.contacts-name {
 
 .dop-function .panel-foundElem {
   margin: 20px 2px;
-  background: rgba(255, 255, 255, 0.342);
+  background: rgb(245, 212, 122);
   width: 280px;
   height: 200px;
   border-radius: 20px;
@@ -580,14 +579,36 @@ p.contacts-name {
   overflow: auto;
 }
 
+::-webkit-scrollbar {
+  width: auto;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(92, 91, 91);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(47, 47, 48);
+}
+
 .panel-foundElem span {
   padding: 5px;
   margin: 5px;
 }
 
+.panel-foundElem span:first-child:hover, span:last-child:hover  {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .panel-foundElem .panel-title {
   margin: 0 60px;
-
 }
 
 .page-main-dictionary .functions-dictionary {
@@ -1046,6 +1067,14 @@ button {
 
 .form-new-words .input-rus-word-light, .input-en-word-light, .input-prompt-light{
   color: rgb(71, 70, 70);
+}
+
+.search-panel-dictionary .search-input-light {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dop-function .panel-foundElem-light {
+  background: rgba(255, 255, 255, 0.342);
 }
 
 
