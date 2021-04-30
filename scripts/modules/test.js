@@ -23,6 +23,7 @@ function test () {
           btnSkip = document.querySelector('.btn-skip');
 
     let newWordsArr = [],
+        urlForTest = 'http://localhost:5000/getWords',
         widthProgress = 0,
         indexCurrWord,
         currVariationWord,
@@ -56,7 +57,11 @@ function test () {
     }
 
     function showWord (containerWord, arrWords, index) {
-        prompt.textContent = arrWords[index].prompt;
+
+        if(arrWords[index].prompt == !undefined) {
+            prompt.textContent = arrWords[index].prompt;
+        }
+        
         if (index % 2) {
             containerWord.textContent = arrWords[index].rus;
             return 'rus';
@@ -208,7 +213,7 @@ function test () {
         newWordsArr = [];
         indexCurrWord = 0;
         currVariationWord = 0;
-        getData('http://localhost:3000/words')
+        getData(urlForTest)
             .then(res => {
                 allWords = res;
                 createWordsCollection(allWords, quantityWordInTest);
@@ -216,7 +221,7 @@ function test () {
             });
     });
 
-    getData('http://localhost:3000/words')
+    getData(urlForTest)
             .then(res => {
                 allWords = res;
                 createWordsCollection(allWords, quantityWordInTest);

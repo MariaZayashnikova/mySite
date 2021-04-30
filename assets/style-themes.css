@@ -229,7 +229,6 @@ p.contacts-name {
 }
 
 .page-footer {
-  margin-top: auto;
   color: #ffffff;
   background-image: url("img/spacewhiteOpacity8.png");
   background-position: 20px 80px;
@@ -239,7 +238,7 @@ p.contacts-name {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 7px 15px;
 }
 
 .page-footer p {
@@ -568,6 +567,59 @@ p.contacts-name {
   font-weight: bold;
 }
 
+.container-dictionary .input-word {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  padding: 2px 5px;
+  margin: 2px;
+  background: rgba(255, 255, 255, 0.637);
+}
+
+.page-main-dictionary .custom-context-menu {
+  background: rgba(255, 255, 255, 0.863);
+  position: absolute;
+  border-radius: 15px;
+  padding: 1px;
+  font-size: 16px;
+}
+
+.custom-context-menu div {
+  text-align: center;
+  margin-bottom: 2px;
+  padding: 5px 0;
+  margin-right: 10px;
+}
+
+.custom-context-menu div:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.custom-context-menu img {
+  border-radius: 20px;
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+}
+.custom-context-menu .update-word {
+  padding-left: 9px;
+}
+
+.custom-context-menu .close {
+  position: relative;
+}
+
+.close .close-context-menu {
+  position: absolute;
+  border-radius: 20px;
+  width: 25px;
+  height: 25px;
+  top: -12px;
+  right: -135px;
+  cursor: pointer;
+}
+
 .dop-function .panel-foundElem {
   margin: 20px 2px;
   background: rgb(245, 212, 122);
@@ -643,7 +695,10 @@ p.contacts-name {
 
 .form-new-words .input-rus-word, .input-en-word, .input-prompt{
   background: transparent;
-  border: 0;
+  border: none;
+  border-bottom: 2px groove  #e334f3cb;
+  border-radius: 10px;
+  padding: 2px 5px;
   color: #b3f4f7;
   font-size: 20px;
   height: 30px;

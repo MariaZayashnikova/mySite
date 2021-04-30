@@ -1,22 +1,21 @@
-import {showMessage} from './dictionary';
-import {findElements, activeLightTheme} from './lightTheme';
-import {getRandomNum} from './test';
+import { showMessage } from './dictionary';
+import { findElements, activeLightTheme } from './lightTheme';
+import { getRandomNum } from './test';
 import getData from './services/getDataService';
 import postData from './services/postDataService';
 
-function workGallery () {
+function workGallery() {
 
     let gallery = document.querySelector('.gallery'),
         images = document.querySelectorAll('.flex .image'),
         templateModal = document.querySelector('#modal').content;
 
-    let commentsAll,
-        urlGallery = 'http://localhost:3000/comments';
+    let commentsAll;
 
-    function showComments (comments, image, parent, startIndex = 0) {
+    function showComments(comments, image, parent, startIndex = 0) {
         let j = startIndex;
         for (let i = 0; i < comments.length; i++) {
-            if(comments[i].image === image){
+            if (comments[i].image === image) {
                 if (j === 5) {
                     let newComment = document.querySelector('#newComment').content;
                     let newComent = newComment.querySelector('.comment').cloneNode(true);
@@ -28,7 +27,7 @@ function workGallery () {
                             item.remove();
                         });
                         showComments(comments, image, parent, 6);
-                    }); 
+                    });
                     break;
 
                 } else {
@@ -60,10 +59,10 @@ function workGallery () {
             noCom.textContent = 'Нет комментариев...';
             parent.after(noCom);
         }
-    }  
-    
-    function correctNumForYear (num) {
-        if(num < 10) {
+    }
+
+    function correctNumForYear(num) {
+        if (num < 10) {
             num = `0${num}`;
         }
 
@@ -129,14 +128,13 @@ function workGallery () {
 
                 data.dateComment = `${day}-${month}-${year}`;
 
-                postData(urlGallery, JSON.stringify(data))
-                    .then(() => {
+                postData('http://localhost:5000/postComment', JSON.stringify(data))
+                    .then((data) => {
                         showMessage(form, 'good');
-
                         form.reset();
 
                         commentsAll = [];
-                        getData(urlGallery)
+                        getData('http://localhost:5000/getComments')
                             .then(data => {
                                 commentsAll = data;
                                 commentsAll.reverse();
@@ -157,8 +155,6 @@ function workGallery () {
                                 } else {
                                     showComments(commentsAll, idImage, parent, 6);
                                 }
-
-                                console.log(parent);
                             })
                             .catch(() => {
                                 showMessage(parent, 'err');
@@ -177,7 +173,7 @@ function workGallery () {
             let idImage = event.target.getAttribute('id'),
                 srcImage = event.target.getAttribute('src'),
                 altImage = event.target.getAttribute('alt');
-            getData(urlGallery)
+            getData('http://localhost:5000/getComments')
                 .then(data => {
                     commentsAll = data;
                     commentsAll.reverse();
