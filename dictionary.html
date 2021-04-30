@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style-themes.css">
-    <title>Dictionary</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style-themes.css">
+  <title>Dictionary</title>
 </head>
 <body class="page">
   <header class="page-header">
-    <a class="navigation-main" href="index.html"><img class="about-image" src="img/mRkcMLS3cXc.jpg" width="147" height="147" alt="Mariya_Zaya"></a>
+    <a class="navigation-main" href="index.html"><img class="about-image" src="assets/img/mRkcMLS3cXc.jpg" width="147"
+        height="147" alt="Mariya_Zaya"></a>
     <div class="header-information">
       <h1 class="page-title">Mariya_Zaya</h1>
       <p class="information"><i>Бухгалтер, аналитик, junior developer</i></p>
@@ -23,97 +24,102 @@
     </div>
     <section class="contacts">
       <h2 class="section-title">Контакты для связи:</h2>
-        <p class="contacts-name">Мария Заяшникова</p>
-        <p><i>email:</i> </p>
-        <p><i>телефон:</i> </p>
+      <p class="contacts-name">Мария Заяшникова</p>
+      <p><i>email:</i> </p>
+      <p><i>телефон:</i> </p>
     </section>
   </header>
-    <main class="page-main-dictionary">
-        <div class="container-dictionary">
-          <div class="search-panel-dictionary">
-            <input type="text" placeholder="Поиск по словарю" class="search-input">
-          </div>
-          <div class="pages-dictionary-left">
-            <div class="num-page-dictionary"></div>
-            <div></div>
-            <div></div>
-            <a href="#" class="navigation-back"><img src="img/arrow-left-circle.svg" alt="Назад" data-back></a>
-          </div>
-          <div class="pages-dictionary-right">
-            <div></div>
-            <div></div>
-            <div></div>
-            <a href="#" class="navigation-next"><img src="img/arrow-right-circle.svg" alt="Вперед" data-next></a>
-          </div>
-        </div>
-        <div class="container-test hidden">
-          <div class="test-start">
-            <div class="test-text">Тестирование работает на основе данных словаря. Количество слов - <span class="quantity-word"></span>.
-               <br>
-                Вариант ответа может быть один, в неопределённых случаях выбирайте самый распространенный вариант перевода.
-                <br>
-                Не забываем про букву Ё!
-              </div>
-            <button class="start-test">Начать</button>
-          </div>
-          <form class="form-test hidden">
-            <div class="container-progress">
-              <div class="progress"></div>
-            </div>
-            <div class="stat-word">word</div>
-            <div class="dash-test">-</div>
-            <div class="container-user-word">
-              <input type="text" class="user-word" autofocus>
-            </div>
-            
-            <div class="container-prompt"></div>
-            <div class="container-btn-check">
-              <button class="check">Проверить</button>
-            </div>
-            
-            <div class="container-btn-skip">
-              <button class="btn-skip">Пропустить</button>
-            </div>
-        </form>
-        <div class="test-end hidden">
-          <div class="text">
-            Тест завершен! <br> Правильных ответов:
-          </div>
-          <div class="result-test">
-            10
-          </div>
-          <div class="result-flex"></div>
-          <button type="button" class="restart-test">Пройти еще раз</button>
-        </div>
-        </div>
-        <div class="dop-function">
-          <div class="panel-foundElem hidden">
-            <span class="panel-title">Найдено:</span>
-          </div>
-          <div class="functions-dictionary">
-            <div class="new-words">
-              <form class="form-new-words">
-                <label for="rus">Русское слово</label>
-                <input type="text" name="rus" class="input-rus-word" id="rus" autofocus>
-                <label for="en">English word</label>
-                <input type="text" name="en" class="input-en-word" id="en">
-                <label for="prompt">Подсказка / Prompt</label>
-                <input type="text" name="prompt" class="input-prompt" id="prompt">
-                <button class="add-word">Добавить</button>
-              </form>
-            </div>
-            <div class="variation">
-              <button class="mode">Пройти тест</button>
-            </div>
-          </div>
-        </div>
-    </main>
-    <footer class="page-footer">
-      <div class="container">
-        <p>© Mariya_Zaya</p>
-        <p>2020</p>
+  <main class="page-main-dictionary">
+    <div class="container-dictionary">
+      <div class="search-panel-dictionary">
+        <input type="text" placeholder="Поиск по словарю" class="search-input">
       </div>
-    </footer>
-    <script src="scripts/bundle.js"></script>
+      <div class="pages-dictionary-left">
+        <div class="num-page-dictionary"></div>
+        <div></div>
+        <div></div>
+        <a href="#" class="navigation-back"><img src="assets/img/arrow-left-circle.svg" alt="Назад" data-back></a>
+      </div>
+      <div class="pages-dictionary-right">
+        <div></div>
+        <div></div>
+        <div></div>
+        <a href="#" class="navigation-next"><img src="assets/img/arrow-right-circle.svg" alt="Вперед" data-next></a>
+      </div>
+    </div>
+    <div class="custom-context-menu hidden">
+      <span class="close"><img src="assets/img/fail-1.1s-200px.png" atl="close" class="close-context-menu"></span>
+      <div class="update-word"><img src="assets/img/crayon-1.1s-200px.png" atl="Change">Изменить</div>
+      <div class="delete-word"><img src="assets/img/no entrance-1.1s-200px.png" alt="Dalete">Удалить</div>
+    </div>
+    <div class="container-test hidden">
+      <div class="test-start">
+        <div class="test-text">Тестирование работает на основе данных словаря. Количество слов - <span
+            class="quantity-word"></span>.
+          <br>
+          Вариант ответа может быть один, в неопределённых случаях выбирайте самый распространенный вариант перевода.
+          <br>
+          Не забываем про букву Ё!
+        </div>
+        <button class="start-test">Начать</button>
+      </div>
+      <form class="form-test hidden">
+        <div class="container-progress">
+          <div class="progress"></div>
+        </div>
+        <div class="stat-word">word</div>
+        <div class="dash-test">-</div>
+        <div class="container-user-word">
+          <input type="text" class="user-word" autofocus>
+        </div>
+        <div class="container-prompt"></div>
+        <div class="container-btn-check">
+          <button class="check">Проверить</button>
+        </div>
+        <div class="container-btn-skip">
+          <button class="btn-skip">Пропустить</button>
+        </div>
+      </form>
+      <div class="test-end hidden">
+        <div class="text">
+          Тест завершен! <br> Правильных ответов:
+        </div>
+        <div class="result-test">
+          10
+        </div>
+        <div class="result-flex"></div>
+        <button type="button" class="restart-test">Пройти еще раз</button>
+      </div>
+    </div>
+    <div class="dop-function">
+      <div class="panel-foundElem hidden">
+        <span class="panel-title">Найдено:</span>
+      </div>
+      <div class="functions-dictionary">
+        <div class="new-words">
+          <form class="form-new-words">
+            <label for="rus">Русское слово</label>
+            <input type="text" name="rus" class="input-rus-word" id="rus" autofocus>
+            <label for="en">English word</label>
+            <input type="text" name="en" class="input-en-word" id="en">
+            <label for="prompt">Подсказка / Prompt</label>
+            <input type="text" name="prompt" class="input-prompt" id="prompt">
+            <button type="submit" class="add-word">Добавить</button>
+          </form>
+        </div>
+        <div class="variation">
+          <button class="mode">Пройти тест</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer">
+    <div class="container">
+      <p>© Mariya_Zaya</p>
+      <p>2020</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
+
 </html>

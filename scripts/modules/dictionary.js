@@ -1,12 +1,11 @@
 'use strict';
 
-import anime from 'animejs/lib/anime.es.js';
 import getData from './services/getDataService';
 import postData from './services/postDataService';
 import test from './test';
-import {quantityWordInTest} from './test';
+import { quantityWordInTest } from './test';
 
-function showMessage (parent, result) {
+function showMessage(parent, result) {
     let text = {
         good: "Успешно добавлено!",
         noWord: "Введите русское и английское слова",
@@ -18,9 +17,9 @@ function showMessage (parent, result) {
 
     let message = document.createElement('div');
     message.classList.add('message');
-    
-    switch(result) {
-        case 'good': 
+
+    switch (result) {
+        case 'good':
             message.textContent = text.good;
             message.style.color = 'green';
             break;
@@ -42,13 +41,13 @@ function showMessage (parent, result) {
     }
 
     parent.append(message);
-    
+
     setTimeout(() => {
         message.remove();
     }, 2000);
 }
 
-function workDictionary () {
+function workDictionary() {
 
     let btnBack = document.querySelector('.navigation-back'),
         btnNext = document.querySelector('.navigation-next'),
@@ -66,7 +65,6 @@ function workDictionary () {
         containerAddWord = document.querySelector('.new-words'),
         currentNumPage = 1,
         pageWordsArr = [],
-        urlDictionary = 'http://localhost:3000/words',
         search = document.querySelector('.search-panel-dictionary input');
 
     let wordsAll;
@@ -81,7 +79,7 @@ function workDictionary () {
 
         container.setAttribute('data-id-element', elem.id);
 
-        if(language === 'rus') {
+        if (language === 'rus') {
             word.textContent = elem.rus;
             translate.textContent = elem.en;
         } else {
@@ -97,12 +95,12 @@ function workDictionary () {
 
         arr.forEach(elem => {
             elem.addEventListener('click', (e) => {
-                if(e.target) {
+                if (e.target) {
                     let id = e.target.parentNode.getAttribute('data-id-element');
                     findWordInDictionary(id);
-    
+
                     document.querySelectorAll('.word-rus').forEach(item => {
-                        if(item.textContent == e.target.textContent) {
+                        if (item.textContent == e.target.textContent) {
                             item.style.color = 'rgb(24 21 218)';
                             item.style.fontWeight = 'bold';
                             setTimeout(() => {
@@ -112,7 +110,7 @@ function workDictionary () {
                         }
                     });
                     document.querySelectorAll('.word-en').forEach(item => {
-                        if(item.textContent == e.target.textContent) {
+                        if (item.textContent == e.target.textContent) {
                             item.style.color = 'rgb(24 21 218)';
                             item.style.fontWeight = 'bold';
                             setTimeout(() => {
@@ -135,7 +133,7 @@ function workDictionary () {
         let numPage;
         pageWordsArr.forEach((item, i) => {
             item.forEach(elem => {
-                if(elem.id === +id) {
+                if (elem.id === +id) {
                     numPage = i;
                     return;
                 }
@@ -161,14 +159,14 @@ function workDictionary () {
             }
 
             clearResult();
-            
+
             let value = search.value.toLowerCase();
 
-            if(value.length === 0) {
+            if (value.length === 0) {
                 clearResult();
                 containerPanel.classList.add('hidden');
                 return;
-            } 
+            }
             let language;
             let foundElements = wordsAll.filter(item => {
                 let rus = item.rus.toLowerCase();
@@ -201,10 +199,11 @@ function workDictionary () {
     function fillPage(arr) {
         for (let i = 0; i < arr.length; i++) {
             rusWords[i].textContent = arr[i].rus;
+            rusWords[i].setAttribute("data-idWord", arr[i].id);
             enWords[i].textContent = arr[i].en;
+            enWords[i].setAttribute("data-idWord", arr[i].id);
             dash[i].textContent = "-";
         }
-
         showNumPage();
     }
 
@@ -236,6 +235,120 @@ function workDictionary () {
         numPage.textContent = currentNumPage;
     }
 
+    function showCastomContextMenu(x, y, id, parent, parentText) {
+        if (document.querySelectorAll('.input-word')) {
+            document.querySelectorAll('.input-word').forEach(item => {
+                item.parentNode.remove();
+            });
+        }
+        let menu = document.querySelector('.custom-context-menu');
+        let btnUpdate = menu.querySelector('.update-word');
+        let btnDelete = menu.querySelector('.delete-word');
+        let btnClose = menu.querySelector('.close-context-menu');
+        if(!menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+        }
+
+        menu.classList.remove('hidden');
+        menu.style.top = `${y + 15}px`;
+        menu.style.left = `${x + 25}px`;
+        menu.setAttribute('data-idWord', id);
+
+        window.addEventListener('click', (e) => {
+            if(!menu.classList.contains('hidden') && e.target !== menu) {
+                menu.classList.add('hidden');
+            }
+        });
+        
+        btnUpdate.addEventListener('click', () => {
+            menu.classList.add('hidden');
+            showInputForUpdateWord(parent, parentText);
+        });
+
+        btnDelete.addEventListener('click', (e) => {
+            let obj = {
+                'id': e.target.parentNode.getAttribute("data-idWord")
+            }
+            let json = JSON.stringify(obj);
+            postData('http://localhost:5000/deleteWord', json)
+                .then(() => {
+                    menu.classList.add('hidden');
+                    getData('http://localhost:5000/getWords')
+                        .then(data => {
+                            wordsAll = 0;
+                            wordsAll = data;
+                            pageWordsArr = [];
+                            calculateWordsPage(data, pageWordsArr);
+                        })
+                        .then(() => {
+                            clearPage();
+                            let index = currentNumPage;
+                            fillPage(pageWordsArr[index - 1]);
+                        });
+                })
+                .catch(() => {
+                    showMessage(e.target.parentNode, 'err');
+                });
+        });
+
+        btnClose.addEventListener('click', () => {
+            menu.classList.add('hidden');
+        });
+    }
+
+    function showInputForUpdateWord(parent, text) {
+        if (document.querySelectorAll('.input-word')) {
+            document.querySelectorAll('.input-word').forEach(item => {
+                item.parentNode.remove();
+            });
+        }
+        let form = document.createElement('form');
+        let input = document.createElement('input');
+        input.classList.add('input-word');
+        input.value = text;
+        form.append(input);
+        input.focus();
+        parent.append(form);
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let language;
+            if (e.target.parentNode.classList.contains('word-rus')) {
+                language = 'rus';
+            } else {
+                language = 'en';
+            }
+
+            let obj = {
+                "id": e.target.parentNode.getAttribute('data-idWord'),
+                "newValue": input.value,
+                "language": language
+            }
+            let json = JSON.stringify(obj);
+            
+            postData('http://localhost:5000/changeWord', json)
+                .then(() => {
+                    showMessage(parent, 'good');
+                    form.remove();
+                    getData('http://localhost:5000/getWords')
+                    .then(data => {
+                        wordsAll = 0;
+                        wordsAll = data;
+                        pageWordsArr = [];
+                        calculateWordsPage(data, pageWordsArr);
+                    })
+                    .then(() => {
+                        clearPage();
+                        let index = currentNumPage;
+                        fillPage(pageWordsArr[index - 1]);
+                    });
+                })
+                .catch(() => {
+                    showMessage(form, 'err');
+                });
+        });
+    }
+
     class createPages {
         constructor(arr, parentLeftPage, parentRightPage) {
             this.words = arr;
@@ -251,6 +364,12 @@ function workDictionary () {
                 rusWord.classList.add('word-rus');
                 parent.append(rusWord);
 
+                rusWord.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    let id = rusWord.getAttribute('data-idWord');
+                    showCastomContextMenu(e.pageX, e.pageY, id, e.target, e.target.textContent);
+                });
+
                 let dash = document.createElement('div');
                 dash.classList.add('dash');
                 parent.append(dash);
@@ -258,6 +377,12 @@ function workDictionary () {
                 let enWord = document.createElement('div');
                 enWord.classList.add('word-en');
                 parent.append(enWord);
+
+                enWord.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    let id = enWord.getAttribute('data-idWord');
+                    showCastomContextMenu(e.pageX, e.pageY, id, e.target, e.target.textContent);
+                });
             }
         }
     }
@@ -308,11 +433,10 @@ function workDictionary () {
         let formData = new FormData(formAddWord);
         let json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-        postData(urlDictionary, json)
+        postData('http://localhost:5000/postWord', json)
             .then(() => {
                 showMessage(formAddWord, 'good');
-
-                getData(urlDictionary)
+                getData('http://localhost:5000/getWords')
                     .then(data => {
                         wordsAll = 0;
                         wordsAll = data;
@@ -351,7 +475,7 @@ function workDictionary () {
         test();
     });
 
-    getData(urlDictionary).then(data => {
+    getData('http://localhost:5000/getWords').then(data => {
         wordsAll = data;
         calculateWordsPage(data, pageWordsArr);
     }).then(() => {
@@ -360,10 +484,9 @@ function workDictionary () {
         fillPage(pageWordsArr[0]);
         searchPanel();
     })
-    .catch(() => {
-        showMessage(pageLeft, 'err');
-    });
-
+        .catch(() => {
+            showMessage(pageLeft, 'err');
+        });
 }
 export default workDictionary;
-export {showMessage};
+export { showMessage };
