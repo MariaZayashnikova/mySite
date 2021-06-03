@@ -57,10 +57,7 @@ function test () {
     }
 
     function showWord (containerWord, arrWords, index) {
-
-        if(arrWords[index].prompt == !undefined) {
-            prompt.textContent = arrWords[index].prompt;
-        }
+        prompt.textContent = arrWords[index].prompt;
         
         if (index % 2) {
             containerWord.textContent = arrWords[index].rus;
