@@ -3,7 +3,7 @@
 import getData from './services/getDataService';
 import postData from './services/postDataService';
 import test from './test';
-import { quantityWordInTest } from './test';
+import { quantityWordInCommonTest, quantityLastWordInTest } from './test';
 
 function showMessage(parent, result) {
     let text = {
@@ -61,7 +61,8 @@ function workDictionary() {
         formAddWord = document.querySelector('.form-new-words'),
         btnMode = document.querySelector('.variation .mode'),
         containerTest = document.querySelector('.container-test'),
-        btnStartTest = document.querySelector('.start-test'),
+        btnStartTestCommon = document.querySelector('#commonTest'),
+        btnStartTestLastWords = document.querySelector('#testLastWord'),
         containerAddWord = document.querySelector('.new-words'),
         currentNumPage = 1,
         pageWordsArr = [],
@@ -69,7 +70,8 @@ function workDictionary() {
 
     let wordsAll;
 
-    document.querySelector('.quantity-word').textContent = quantityWordInTest;
+    document.querySelector('#commonTest span').textContent = quantityWordInCommonTest;
+    document.querySelector('#testLastWord span').textContent = quantityLastWordInTest;
 
     function createTableFoundElemSearch(elem, parent, language) {
         let container = document.createElement('div');
@@ -471,8 +473,12 @@ function workDictionary() {
         }
     });
 
-    btnStartTest.addEventListener('click', () => {
-        test();
+    btnStartTestCommon.addEventListener('click', () => {
+        test('common');
+    });
+
+    btnStartTestLastWords.addEventListener('click', () => {
+        test('last');
     });
 
     getData('http://localhost:5000/getWords').then(data => {

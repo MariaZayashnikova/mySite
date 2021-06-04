@@ -798,14 +798,19 @@ p.contacts-name {
 }
 
 .test-start .start-test {
+  width: 200px;
   padding: 5px 15px;
-  margin: 20px 45%;
-  font-size: 22px;
+  margin: 20px 10%;
+  font-size: 20px;
   background-color: transparent;
   color:  #27262b;
   border-radius: 10px;
   border: 1px solid  #27262b;
   cursor: pointer;
+}
+
+.start-test span {
+  font-size: 16px;
 }
 
 .start-test:hover {
