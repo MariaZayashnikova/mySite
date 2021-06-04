@@ -5,9 +5,10 @@ function getRandomNum (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-let quantityWordInTest = 25;
+let quantityWordInCommonTest = 25;
+let quantityLastWordInTest = 20;
 
-function test () {
+function test(variation) {
 
     const formTest = document.querySelector('.form-test'),
           statWord = document.querySelector('.stat-word'),
@@ -46,6 +47,14 @@ function test () {
         }
     }
 
+    function createLastWordsCollection(originalArr, quantity) {
+        let quantityNew = +`-${quantity}`;
+        newWordsArr = originalArr.slice(quantityNew);
+        newWordsArr.forEach(item => {
+            item.show = false;
+        });
+    }
+
     function findWord (arr) {
         for (let i = 0; i < arr.length; i++) {
             if(!arr[i].show) {
@@ -57,10 +66,7 @@ function test () {
     }
 
     function showWord (containerWord, arrWords, index) {
-
-        if(arrWords[index].prompt == !undefined) {
-            prompt.textContent = arrWords[index].prompt;
-        }
+        prompt.textContent = arrWords[index].prompt;
         
         if (index % 2) {
             containerWord.textContent = arrWords[index].rus;
@@ -175,28 +181,38 @@ function test () {
         progressBar.textContent = `${currWidthProgress}%`;
     }
 
-    btnCheck.addEventListener('click', (event) => {
+    function check(event) {
         event.preventDefault();
 
         if (!userWord.value) {
             showMessage(containerUserWord, 'errTranslation');
         } else {
-            widthProgress += 100 / quantityWordInTest;
+
+            if(variation === 'last') {
+                widthProgress += 100 / quantityLastWordInTest;
+            } else {
+                widthProgress += 100 / quantityWordInCommonTest;
+            }
+        
             let wordUser = userWord.value.toLowerCase();
             saveData(newWordsArr, indexCurrWord, wordUser, currVariationWord);
             userWord.value = '';
             showProgress(widthProgress);
             startTest();
         }
-    });
+    }
 
-    btnSkip.addEventListener('click', (e) => {
+    btnCheck.addEventListener('click', check);
+
+    function skip(e) {
         e.preventDefault();
 
         newWordsArr[indexCurrWord].show = true;
         userWord.value = '';
         startTest();
-    });
+    }
+
+    btnSkip.addEventListener('click', skip);
 
     btnRestart.addEventListener('click', () => {
         let oldResult = document.querySelectorAll('.result-flex .result-flex-element');
@@ -207,29 +223,33 @@ function test () {
         } 
 
         pageEndTest.classList.add('hidden');
-        formTest.classList.remove('hidden');
+        
         widthProgress = 0;
         showProgress(widthProgress);
         newWordsArr = [];
         indexCurrWord = 0;
         currVariationWord = 0;
-        getData(urlForTest)
-            .then(res => {
-                allWords = res;
-                createWordsCollection(allWords, quantityWordInTest);
-                startTest();
-            });
+
+        document.querySelector('.test-start').classList.remove('hidden');
+        btnCheck.removeEventListener('click', check);
+        btnSkip.removeEventListener('click', skip);
     });
 
     getData(urlForTest)
             .then(res => {
                 allWords = res;
-                createWordsCollection(allWords, quantityWordInTest);
+                if(variation === 'last') {
+                    createLastWordsCollection(allWords, quantityLastWordInTest);
+                } else {
+                    createWordsCollection(allWords, quantityWordInCommonTest);
+                }
+                
                 startTest();
             });
 
 }
 export default test;
 export {getRandomNum};
-export {quantityWordInTest};
+export {quantityWordInCommonTest};
+export {quantityLastWordInTest};
 
