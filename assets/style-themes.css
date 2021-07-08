@@ -460,6 +460,7 @@ p.contacts-name {
 .page-main-dictionary {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   background-color: rgba(32, 29, 29, 0.973);
   width: 100%;
   min-height: 750px;
