@@ -419,13 +419,15 @@ function workDictionary() {
             return;
         }
 
-        if (inputEn.value) {
+        if (inputEn.value && inputRus.value) {
             let enElement = inputEn.value.toLowerCase();
+            let rusElement = inputRus.value.toLowerCase();
 
             for (let i = 0; i < wordsAll.length; i++) {
                 let enElementInDB = wordsAll[i].en.toLowerCase();
+                let rusElementInDB = wordsAll[i].rus.toLowerCase();
 
-                if (enElement === enElementInDB) {
+                if (enElement === enElementInDB && rusElement === rusElementInDB) {
                     showMessage(formAddWord, 'wordTru');
                     return;
                 }
